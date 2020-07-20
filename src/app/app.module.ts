@@ -7,13 +7,15 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { SelectBranchFyearComponent } from './select-branch-fyear/select-branch-fyear.component';
+import { Test1Component } from './test1/test1.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     SignupComponent,
-    SelectBranchFyearComponent
+    SelectBranchFyearComponent,
+    Test1Component
   ],
   imports: [
     BrowserModule,
