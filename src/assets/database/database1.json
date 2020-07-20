@@ -1,0 +1,144 @@
+{
+  "compinfo": [
+    {
+      "brid": "1",
+      "compname": "Dhanmondi iCenter",
+      "brname": "iCD",
+      "address": "Rupayan khan plaza (G-F) Plot# 18 (New) Road # 7 Dhanmondi R/A Dhaka",
+      "phone": "01678750350",
+      "fax": "+88029576236",
+      "email": ["sales@icentre-bd.com","asp@icentre-bd.com"],
+      "web": "www.icentre-bd.com",
+      "contactperson": "Balaram Saha",
+      "bin": "000242603"
+    },
+    {
+      "brid": "2",
+      "compname": "Jamuna iCenter",
+      "brname": "iCJ",
+      "address": "Jamuna Future Park, Shop# 4D-001, Level-4, Kuril, Dhaka",
+      "phone": "01678750354",
+      "fax": "",
+      "email": ["sales@icentre-bd.com","asp@icentre-bd.com"],
+      "web": "www.icentre-bd.com",
+      "contactperson": "Balaram Saha",
+      "bin": "000242709"
+    },
+    {
+      "brid": "3",
+      "compname": "iService Jamuna",
+      "brname": "iSJ",
+      "address": "Jamuna Future Park, Shop# 4B-007, Level-4, Progati Sarani, Kuril, Dhaka",
+      "phone": "01678037298",
+      "fax": "+88029576236",
+      "email": ["sales@icentre-bd.com","asp@icentre-bd.com"],
+      "web": "www.icentre-bd.com",
+      "contactperson": "Balaram Saha",
+      "bin": ""
+    },
+    {
+      "brid": "4",
+      "compname": "Satcom iCenter Limited",
+      "brname": "SIL",
+      "address": "9-G, Motijheel C/A (1st & 2nd Floor), Dhaka-1000",
+      "phone": "01611966263",
+      "fax": "+88029576236",
+      "email": ["sales@icentre-bd.com","asp@icentre-bd.com"],
+      "web": "www.satcombd.com",
+      "contactperson": "Balaram Saha",
+      "bin": "000242772"
+    },
+    {
+      "brid": "5",
+      "compname": "Satcom Computer's Limited",
+      "brname": "SCL",
+      "address": "9-G, Motijheel C/A (1st & 2nd Floor), Dhaka-1000",
+      "phone": "+88-02-9576118-9",
+      "fax": "+88029576236",
+      "email": ["satcomit@satcombd.com"],
+      "web": "www.satcombd.com",
+      "contactperson": "Balaram Saha",
+      "bin": "000240764"
+    },
+    {
+      "brid": "6",
+      "compname": "iService Chittagong",
+      "brname": "iSC",
+      "address": "Younesco Center, Chittago",
+      "phone": "",
+      "fax": "",
+      "email": "[]",
+      "web": "",
+      "contactperson": "",
+      "bin": ""
+    }
+  ],
+  "yearinfo": [
+    {
+      "yearid": "1",
+      "yearcode": "1",
+      "openingfield": "OPENBALANCE",
+      "startdate": "2020-07-01",
+      "enddate": "2021-06-30",
+      "description": "FINANCIAL YEAR 2020-2021"
+    }
+  ],
+  "products": [
+    {
+      "name": "APPLE 27 inch THUNDERBOLT DISPLAY",
+      "show_room": "Jamuna iCenter",
+      "stock": "1",
+      "type": "DISPLAYS",
+      "category": "APPLE",
+      "id": "101"
+    },
+    {
+      "name": "MAC MINI 3.6GHZ 8GB/QC/128GB",
+      "show_room": "Jamuna iCenter",
+      "stock": "2",
+      "type": "MAC MINI",
+      "category": "APPLE",
+      "id": "102"
+    },
+    {
+      "name": "MAC MINI 2.6/8GB/1TB",
+      "show_room": "Jamuna iCenter",
+      "stock": "1",
+      "type": "MAC MINI",
+      "category": "APPLE",
+      "id": "103"
+    },
+    {
+      "name": "MAGIC KEYBOARD WITH NUMERIC KEYPAD",
+      "show_room": "Jamuna iCenter",
+      "stock": "3",
+      "type": "KEYBOARD",
+      "category": "MAC ACCESSORIES",
+      "id": "104"
+    },
+    {
+      "name": "APPLE WIRELESS KEYBOARD",
+      "show_room": "Jamuna iCenter",
+      "stock": "2",
+      "type": "KEYBOARD",
+      "category": "MAC ACCESSORIES",
+      "id": "105"
+    },
+    {
+      "name": "MAGIC KEYBOARD WITH NUMERIC KEYPAD",
+      "show_room": "Jamuna iCenter",
+      "stock": "3",
+      "type": "MOUSE",
+      "category": "MAC ACCESSORIES",
+      "id": "106"
+    },
+    {
+      "name": "APPLE WIRELESS KEYBOARD",
+      "show_room": "Jamuna iCenter",
+      "stock": "2",
+      "type": "MOUSE",
+      "category": "MAC ACCESSORIES",
+      "id": "107"
+    }
+  ]
+}
