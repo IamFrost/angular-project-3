@@ -8,6 +8,7 @@ import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { SelectBranchFyearComponent } from './select-branch-fyear/select-branch-fyear.component';
 import { Test1Component } from './test1/test1.component';
+import { Menu1Component } from './menu1/menu1.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { Test1Component } from './test1/test1.component';
     LoginComponent,
     SignupComponent,
     SelectBranchFyearComponent,
-    Test1Component
+    Test1Component,
+    Menu1Component
   ],
   imports: [
     BrowserModule,

@@ -4,12 +4,13 @@ import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { SelectBranchFyearComponent } from './select-branch-fyear/select-branch-fyear.component';
 import { Test1Component } from './test1/test1.component';
+import { Menu1Component } from './menu1/menu1.component';
 
 
 const routes: Routes = [
   {
     path:'',
-    redirectTo: 'test1',
+    redirectTo: 'selectBranchFyear',
     pathMatch: 'full'
   },
   {
@@ -27,6 +28,10 @@ const routes: Routes = [
   {
     path:'test1',
     component: Test1Component
+  },
+  {
+    path:'menu1',
+    component: Menu1Component
   }
 ];
 
