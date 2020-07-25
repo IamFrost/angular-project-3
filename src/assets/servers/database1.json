@@ -1,4 +1,29 @@
 {
+
+  "logins": [
+    {
+      "username": "rony",
+      "email": "Accounting Head Entry",
+      "password1": "ACCOUNTS"
+    }
+  ],
+  "passwordreset": [
+    {
+      "email": "a@b.com",
+      "code": "54689",
+      "verification_status": "false"
+    },
+    {
+      "email": "a1@b.com",
+      "code": "5461211289",
+      "verification_status": "false"
+    },
+    {
+      "email": "a2@b.com",
+      "code": "54555589",
+      "verification_status": "false"
+    }
+  ],
   "compinfo": [
     {
       "brid": "1",
@@ -7,7 +32,10 @@
       "address": "Rupayan khan plaza (G-F) Plot# 18 (New) Road # 7 Dhanmondi R/A Dhaka",
       "phone": "01678750350",
       "fax": "+88029576236",
-      "email": ["sales@icentre-bd.com","asp@icentre-bd.com"],
+      "email": [
+        "sales@icentre-bd.com",
+        "asp@icentre-bd.com"
+      ],
       "web": "www.icentre-bd.com",
       "contactperson": "Balaram Saha",
       "bin": "000242603"
@@ -19,7 +47,10 @@
       "address": "Jamuna Future Park, Shop# 4D-001, Level-4, Kuril, Dhaka",
       "phone": "01678750354",
       "fax": "",
-      "email": ["sales@icentre-bd.com","asp@icentre-bd.com"],
+      "email": [
+        "sales@icentre-bd.com",
+        "asp@icentre-bd.com"
+      ],
       "web": "www.icentre-bd.com",
       "contactperson": "Balaram Saha",
       "bin": "000242709"
@@ -31,7 +62,10 @@
       "address": "Jamuna Future Park, Shop# 4B-007, Level-4, Progati Sarani, Kuril, Dhaka",
       "phone": "01678037298",
       "fax": "+88029576236",
-      "email": ["sales@icentre-bd.com","asp@icentre-bd.com"],
+      "email": [
+        "sales@icentre-bd.com",
+        "asp@icentre-bd.com"
+      ],
       "web": "www.icentre-bd.com",
       "contactperson": "Balaram Saha",
       "bin": ""
@@ -43,7 +77,10 @@
       "address": "9-G, Motijheel C/A (1st & 2nd Floor), Dhaka-1000",
       "phone": "01611966263",
       "fax": "+88029576236",
-      "email": ["sales@icentre-bd.com","asp@icentre-bd.com"],
+      "email": [
+        "sales@icentre-bd.com",
+        "asp@icentre-bd.com"
+      ],
       "web": "www.satcombd.com",
       "contactperson": "Balaram Saha",
       "bin": "000242772"
@@ -55,7 +92,9 @@
       "address": "9-G, Motijheel C/A (1st & 2nd Floor), Dhaka-1000",
       "phone": "+88-02-9576118-9",
       "fax": "+88029576236",
-      "email": ["satcomit@satcombd.com"],
+      "email": [
+        "satcomit@satcombd.com"
+      ],
       "web": "www.satcombd.com",
       "contactperson": "Balaram Saha",
       "bin": "000240764"
@@ -140,5 +179,56 @@
       "category": "MAC ACCESSORIES",
       "id": "107"
     }
+  ],
+  "purchases": [
+    {
+      "item_id": "1000",
+      "item_name": "pencil",
+      "item_quantity": "20",
+      "item_rate": "5.5",
+      "item_purchase_date":"2020-05-09"
+    },
+    {
+      "item_id": "1001",
+      "item_name": "pen",
+      "item_quantity": "10",
+      "item_rate": "5.5",
+      "item_purchase_date":"2020-04-04"
+    },
+    {
+      "item_id": "1002",
+      "item_name": "rubber",
+      "item_quantity": "5",
+      "item_rate": "5.5",
+      "item_purchase_date":"2019-01-01"
+    }
+  ],
+  "usersec": [
+    {
+      "userid": "rony",
+      "menuname": "Accounting Head Entry",
+      "mainmenu": "ACCOUNTS"
+    },
+    {
+      "userid": "suman",
+      "menuname": "Create User",
+      "mainmenu": "ADMIN"
+    },
+    {
+      "userid": "rony",
+      "menuname": "Card Entry",
+      "mainmenu": "INVENTORY"
+    },
+    {
+      "userid": "rony",
+      "menuname": "Purchase Product Search Details",
+      "mainmenu": "RECEIVED GOODS"
+    },
+    {
+      "userid": "rony",
+      "menuname": "Ledger Book",
+      "mainmenu": "ACCOUNTS"
+    }
   ]
+
 }

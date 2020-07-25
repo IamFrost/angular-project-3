@@ -1,1 +1,238 @@
-<p>user-access works!</p>
+<div class="topnav" style="margin-left: 12.5rem;">
+  <a class="active" href="#home">Home</a>
+  <a href="#news">News</a>
+  <a href="#contact">Contact</a>
+  <a href="#about">About</a>
+</div>
+
+
+<div class="sidenav col-md-2" style="text-align: center;">
+  <img src="../../assets/images/logos/satcomLogo1.PNG" alt="SatcomLogo" class="img-thumbnail">
+  <p style="color: #fff;">Dhanmondi iCenter</p>
+  <p style="color: #fff;">Financial year 2020-2021</p>
+
+</div>
+
+<div style="margin-left: 12.5rem;">
+
+  <div style="text-align: center;">
+    <p>Select User : </p>
+    <select class="form-control" id="sel1" style="height: 3rem; width: max-content; margin-left: 33.5rem;">
+      <option>suman</option>
+      <option>rony</option>
+      <option>alex</option>
+    </select>
+  </div>
+
+  <div style=" background-color: #e9ecef; margin-top: 2rem;" class="container">
+    <button class="btn btn-block disabled" style="background-color: #d2e6dc;">Set User Permission</button>
+    <hr>
+
+    <form name="form">
+      <div class="form-group row">
+        <label class="col-4">ADMIN</label>
+        <div class="col-8">
+          <div class="custom-control custom-checkbox custom-control-inline">
+            <input name="checkbox" id="checkbox_0" type="checkbox" class="custom-control-input" value="Create User">
+            <label for="checkbox_0" class="custom-control-label">Create User</label>
+          </div>
+          <div class="custom-control custom-checkbox custom-control-inline">
+            <input name="checkbox" id="checkbox_1" type="checkbox" class="custom-control-input" value="User Access">
+            <label for="checkbox_1" class="custom-control-label">User Access</label>
+          </div>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-4">ACCOUNTS</label>
+        <div class="col-8">
+          <div class="custom-control custom-checkbox custom-control-inline">
+            <input name="checkbox1" id="checkbox1_0" type="checkbox" class="custom-control-input" value="Accounting Head Entry">
+            <label for="checkbox1_0" class="custom-control-label">Accounting Head Entry</label>
+          </div>
+          <div class="custom-control custom-checkbox custom-control-inline">
+            <input name="checkbox1" id="checkbox1_1" type="checkbox" class="custom-control-input" value="Buyer Ledger">
+            <label for="checkbox1_1" class="custom-control-label">Buyer Ledger</label>
+          </div>
+          <div class="custom-control custom-checkbox custom-control-inline">
+            <input name="checkbox1" id="checkbox1_2" type="checkbox" class="custom-control-input" value="Contra Voucher Entry">
+            <label for="checkbox1_2" class="custom-control-label">Contra Voucher Entry</label>
+          </div>
+          <div class="custom-control custom-checkbox custom-control-inline">
+            <input name="checkbox1" id="checkbox1_3" type="checkbox" class="custom-control-input" value="General Ledger">
+            <label for="checkbox1_3" class="custom-control-label">General Ledger</label>
+          </div>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-4"></label>
+        <div class="col-8">
+          <div class="custom-control custom-checkbox custom-control-inline">
+            <input name="checkbox2" id="checkbox2_0" type="checkbox" class="custom-control-input" value="Item Ledger">
+            <label for="checkbox2_0" class="custom-control-label">Item Ledger</label>
+          </div>
+          <div class="custom-control custom-checkbox custom-control-inline">
+            <input name="checkbox2" id="checkbox2_1" type="checkbox" class="custom-control-input" value=" Ledger Book">
+            <label for="checkbox2_1" class="custom-control-label">Ledger Book</label>
+          </div>
+          <div class="custom-control custom-checkbox custom-control-inline">
+            <input name="checkbox2" id="checkbox2_2" type="checkbox" class="custom-control-input" value="Open Balance for Buyer">
+            <label for="checkbox2_2" class="custom-control-label">Open Balance for Buyer</label>
+          </div>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-4"></label>
+        <div class="col-8">
+          <div class="custom-control custom-checkbox custom-control-inline">
+            <input name="checkbox3" id="checkbox3_0" type="checkbox" class="custom-control-input" value="Open Balance for Supplier">
+            <label for="checkbox3_0" class="custom-control-label">Open Balance for Supplier</label>
+          </div>
+          <div class="custom-control custom-checkbox custom-control-inline">
+            <input name="checkbox3" id="checkbox3_1" type="checkbox" class="custom-control-input" value="Receive Payment">
+            <label for="checkbox3_1" class="custom-control-label">Receive Payment</label>
+          </div>
+          <div class="custom-control custom-checkbox custom-control-inline">
+            <input name="checkbox3" id="checkbox3_2" type="checkbox" class="custom-control-input" value="Supplier Ledger">
+            <label for="checkbox3_2" class="custom-control-label">Supplier Ledger</label>
+          </div>
+          <div class="custom-control custom-checkbox custom-control-inline">
+            <input name="checkbox3" id="checkbox3_3" type="checkbox" class="custom-control-input" value="Vocher Entry">
+            <label for="checkbox3_3" class="custom-control-label">Vocher Entry</label>
+          </div>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-4">SALE</label>
+        <div class="col-8">
+          <div class="custom-control custom-checkbox custom-control-inline">
+            <input name="checkbox4" id="checkbox4_0" type="checkbox" class="custom-control-input" value="Buyer">
+            <label for="checkbox4_0" class="custom-control-label">Buyer</label>
+          </div>
+          <div class="custom-control custom-checkbox custom-control-inline">
+            <input name="checkbox4" id="checkbox4_1" type="checkbox" class="custom-control-input" value="Buyer List">
+            <label for="checkbox4_1" class="custom-control-label">Buyer List</label>
+          </div>
+          <div class="custom-control custom-checkbox custom-control-inline">
+            <input name="checkbox4" id="checkbox4_2" type="checkbox" class="custom-control-input" value="MR Search">
+            <label for="checkbox4_2" class="custom-control-label">MR Search</label>
+          </div>
+          <div class="custom-control custom-checkbox custom-control-inline">
+            <input name="checkbox4" id="checkbox4_3" type="checkbox" class="custom-control-input" value="Sale Entry">
+            <label for="checkbox4_3" class="custom-control-label">Sale Entry</label>
+          </div>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-4"></label>
+        <div class="col-8">
+          <div class="custom-control custom-checkbox custom-control-inline">
+            <input name="checkbox5" id="checkbox5_0" type="checkbox" class="custom-control-input" value="Sale Product Search">
+            <label for="checkbox5_0" class="custom-control-label">Sale Product Search</label>
+          </div>
+          <div class="custom-control custom-checkbox custom-control-inline">
+            <input name="checkbox5" id="checkbox5_1" type="checkbox" class="custom-control-input" value="Buyer Ledger">
+            <label for="checkbox5_1" class="custom-control-label">Buyer Ledger</label>
+          </div>
+          <div class="custom-control custom-checkbox custom-control-inline">
+            <input name="checkbox5" id="checkbox5_2" type="checkbox" class="custom-control-input" value="Sale Return Entry">
+            <label for="checkbox5_2" class="custom-control-label">Sale Return Entry</label>
+          </div>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-4">INVENTORY</label>
+        <div class="col-8">
+          <div class="custom-control custom-checkbox custom-control-inline">
+            <input name="checkbox6" id="checkbox6_0" type="checkbox" class="custom-control-input" value="Card Entry">
+            <label for="checkbox6_0" class="custom-control-label">Card Entry</label>
+          </div>
+          <div class="custom-control custom-checkbox custom-control-inline">
+            <input name="checkbox6" id="checkbox6_1" type="checkbox" class="custom-control-input" value="Damage Adjust">
+            <label for="checkbox6_1" class="custom-control-label">Damage Adjust</label>
+          </div>
+          <div class="custom-control custom-checkbox custom-control-inline">
+            <input name="checkbox6" id="checkbox6_2" type="checkbox" class="custom-control-input" value="Item Entry">
+            <label for="checkbox6_2" class="custom-control-label">Item Entry</label>
+          </div>
+          <div class="custom-control custom-checkbox custom-control-inline">
+            <input name="checkbox6" id="checkbox6_3" type="checkbox" class="custom-control-input" value="Item Search">
+            <label for="checkbox6_3" class="custom-control-label">Item Search</label>
+          </div>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-4"></label>
+        <div class="col-8">
+          <div class="custom-control custom-checkbox custom-control-inline">
+            <input name="checkbox7" id="checkbox7_0" type="checkbox" class="custom-control-input" value="Opening Balance">
+            <label for="checkbox7_0" class="custom-control-label">Opening Balance</label>
+          </div>
+          <div class="custom-control custom-checkbox custom-control-inline">
+            <input name="checkbox7" id="checkbox7_1" type="checkbox" class="custom-control-input" value="Opening Quantity">
+            <label for="checkbox7_1" class="custom-control-label">Opening Quantity</label>
+          </div>
+          <div class="custom-control custom-checkbox custom-control-inline">
+            <input name="checkbox7" id="checkbox7_2" type="checkbox" class="custom-control-input" value="Stock Position">
+            <label for="checkbox7_2" class="custom-control-label">Stock Position</label>
+          </div>
+          <div class="custom-control custom-checkbox custom-control-inline">
+            <input name="checkbox7" id="checkbox7_3" type="checkbox" class="custom-control-input" value="Unit Entry">
+            <label for="checkbox7_3" class="custom-control-label">Unit Entry</label>
+          </div>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-4">RECEIVED GOODS</label>
+        <div class="col-8">
+          <div class="custom-control custom-checkbox custom-control-inline">
+            <input name="checkbox8" id="checkbox8_0" type="checkbox" class="custom-control-input" value="Purchase Chalan">
+            <label for="checkbox8_0" class="custom-control-label">Purchase Chalan</label>
+          </div>
+          <div class="custom-control custom-checkbox custom-control-inline">
+            <input name="checkbox8" id="checkbox8_1" type="checkbox" class="custom-control-input" value="Purchase Edit">
+            <label for="checkbox8_1" class="custom-control-label">Purchase Edit</label>
+          </div>
+          <div class="custom-control custom-checkbox custom-control-inline">
+            <input name="checkbox8" id="checkbox8_2" type="checkbox" class="custom-control-input" value="Purchase Entry">
+            <label for="checkbox8_2" class="custom-control-label">Purchase Entry</label>
+          </div>
+          <div class="custom-control custom-checkbox custom-control-inline">
+            <input name="checkbox8" id="checkbox8_3" type="checkbox" class="custom-control-input" value="Purchase Product Search Details">
+            <label for="checkbox8_3" class="custom-control-label">Purchase Product Search Details</label>
+          </div>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-4"></label>
+        <div class="col-8">
+          <div class="custom-control custom-checkbox custom-control-inline">
+            <input name="checkbox9" id="checkbox9_0" type="checkbox" class="custom-control-input" value="Purchase Return">
+            <label for="checkbox9_0" class="custom-control-label">Purchase Return</label>
+          </div>
+          <div class="custom-control custom-checkbox custom-control-inline">
+            <input name="checkbox9" id="checkbox9_1" type="checkbox" class="custom-control-input" value="Supplier Info Entry">
+            <label for="checkbox9_1" class="custom-control-label">Supplier Info Entry</label>
+          </div>
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="offset-4 col-8">
+          <button name="submit" type="submit" class="btn btn-primary">Submit</button>
+        </div>
+      </div>
+    </form>
+
+  </div>
+
+</div>
+
+
+<!-- <div class="form-group" style="margin-left: 24rem; margin-right: 10rem">
+    <p style="text-align: left;">Select User:</p>
+    <select class="form-control" id="sel1" style="height: 3rem;">
+      <option>Suman</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+    </select>
+  </div> -->

@@ -5,12 +5,13 @@ import { SignupComponent } from './signup/signup.component';
 import { SelectBranchFyearComponent } from './select-branch-fyear/select-branch-fyear.component';
 import { Test1Component } from './test1/test1.component';
 import { Menu1Component } from './menu1/menu1.component';
+import { UserAccessComponent } from './user-access/user-access.component';
 
 
 const routes: Routes = [
   {
     path:'',
-    redirectTo: 'selectBranchFyear',
+    redirectTo: 'useraccess',
     pathMatch: 'full'
   },
   {
@@ -22,7 +23,7 @@ const routes: Routes = [
     component: SignupComponent
   },
   {
-    path:'selectBranchFyear',
+    path:'selectbranchfyear',
     component: SelectBranchFyearComponent
   },
   {
@@ -32,6 +33,10 @@ const routes: Routes = [
   {
     path:'menu1',
     component: Menu1Component
+  },
+  {
+    path:'useraccess',
+    component: UserAccessComponent
   }
 ];
 
