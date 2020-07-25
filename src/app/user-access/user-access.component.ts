@@ -18,25 +18,25 @@ export class UserAccessComponent implements OnInit {
     // this.selectedHero();
   }
 
-  selectedHero() {
-    var elements = (<HTMLInputElement[]><any>document.getElementsByName("form"));
-    for (let i = 0; i < elements.length; i++) {
-      if (elements[i].type == "checkbox") {
-        if (elements[i].checked) {
-          console.log("Checked", elements[i].checked);
-          //this.inEditMode = true;
-          break;                      //<== Add this line in your for loop
-        }
-        else {
-          console.log("Unchecked", elements[i].checked);
-          //this.inEditMode = false;
-        }
-      }
-      // else{
-      //   console.log('this is type : '+elements[i].type);
-      // }
-    }
-  }
+  // selectedHero() {
+  //   var elements = (<HTMLInputElement[]><any>document.getElementsByName("form"));
+  //   for (let i = 0; i < elements.length; i++) {
+  //     if (elements[i].type == "checkbox") {
+  //       if (elements[i].checked) {
+  //         console.log("Checked", elements[i].checked);
+  //         //this.inEditMode = true;
+  //         break;                      //<== Add this line in your for loop
+  //       }
+  //       else {
+  //         console.log("Unchecked", elements[i].checked);
+  //         //this.inEditMode = false;
+  //       }
+  //     }
+  //     // else{
+  //     //   console.log('this is type : '+elements[i].type);
+  //     // }
+  //   }
+  // }
 
   async getOneUserAccess() {
     const response = await this.userAccessOneService.GetOneUserAccess('rony');
