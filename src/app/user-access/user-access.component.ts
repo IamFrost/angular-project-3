@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserAccessOneService } from "../services/user-access-one/user-access-one.service";
+// import {AfterViewInit, ElementRef, ViewChild} from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-user-access',
@@ -8,13 +10,56 @@ import { UserAccessOneService } from "../services/user-access-one/user-access-on
 })
 export class UserAccessComponent implements OnInit {
 
+  // @ViewChild('myDiv') myDiv: ElementRef;
+
+  currentSelectedUser;
+  mapMenu = new Map();
+  mapMenusFirstColumn = [];
+  mapMenusSecondColumn = [];
+  // mapMenusFirstColumn = this.getFirstColumn(this.getMenu());
   constructor(private userAccessOneService: UserAccessOneService) {
   }
 
   ngOnInit(): void {
     // this.getOneUserAccess();
     // this.getDistinctMainMenuValues();
-    // this.selectedHero();
+    this.selectedHero();
+    // this.getMenu();
+    this.setMap();
+    this.setFirstColumn();
+    this.x();
+  }
+
+  trackByFn(i: number) {
+    return i;
+  }
+
+  setMap() {
+    this.mapMenu = this.getMenu();
+  }
+
+  getSecondColumn(map: Map<any, any>, firstColumnName: string) {
+    let secondColumn = [];
+    for (let entry of map.entries()) {
+      if (entry[0] === firstColumnName) {
+        secondColumn = entry[1];
+        break;
+      }
+    }
+    return secondColumn;
+  }
+
+  setFirstColumn() {
+    this.mapMenusFirstColumn = this.getFirstColumn(this.getMenu());
+  }
+
+  getFirstColumn(map: Map<any, any>) {
+    let firstColumn = [];
+    for (let entry of map.entries()) {
+      firstColumn.push(entry[0]);
+    }
+
+    return firstColumn;
   }
 
   getMenu() {
@@ -32,28 +77,33 @@ export class UserAccessComponent implements OnInit {
       'Unit Entry']);
     map.set('RECEIVED GOODS', ['Purchase Chalan', 'Purchase Edit', 'Purchase Entry',
       'Purchase Product Search Details', 'Supplier Info Entry']);
-      return map;
+
+    //Iterate over map entries
+    for (let entry of map.entries()) {
+      console.log('this is map : ', entry[0], entry[1]);
+    }
+    return map;
   }
 
-  // selectedHero() {
-  //   var elements = (<HTMLInputElement[]><any>document.getElementsByName("form"));
-  //   for (let i = 0; i < elements.length; i++) {
-  //     if (elements[i].type == "checkbox") {
-  //       if (elements[i].checked) {
-  //         console.log("Checked", elements[i].checked);
-  //         //this.inEditMode = true;
-  //         break;                      //<== Add this line in your for loop
-  //       }
-  //       else {
-  //         console.log("Unchecked", elements[i].checked);
-  //         //this.inEditMode = false;
-  //       }
-  //     }
-  //     // else{
-  //     //   console.log('this is type : '+elements[i].type);
-  //     // }
-  //   }
-  // }
+  selectedHero() {
+    var elements = (<HTMLInputElement[]><any>document.getElementsByName("form"));
+    for (let i = 0; i < elements.length; i++) {
+      if (elements[i].type == "checkbox") {
+        if (elements[i].checked) {
+          console.log("Checked", elements[i].checked);
+          //this.inEditMode = true;
+          //break;                      //<== Add this line in your for loop
+        }
+        else {
+          console.log("Unchecked", elements[i].checked);
+          //this.inEditMode = false;
+        }
+      }
+      else {
+        console.log('this is type : ' + elements[i].type);
+      }
+    }
+  }
 
   async getOneUserAccess() {
     const response = await this.userAccessOneService.GetOneUserAccess('rony');
@@ -81,8 +131,8 @@ export class UserAccessComponent implements OnInit {
 
       let elements = [];
       menuname.forEach(element => {
-        console.log('this is main menu from getKeyValuePair : ' + mainmenu);
-        console.log('this is menu name from getKeyValuePair : ' + element);
+        // console.log('this is main menu from getKeyValuePair : ' + mainmenu);
+        // console.log('this is menu name from getKeyValuePair : ' + element);
         elements.push(element);
       });
       map.set(mainmenu, elements);
@@ -114,7 +164,7 @@ export class UserAccessComponent implements OnInit {
     const result = [];
 
     // this.GetAllProducts();
-    console.log(items);
+    // console.log(items);
     for (const item of items) {
       const currentVar = item[column1Name];
 
@@ -124,7 +174,7 @@ export class UserAccessComponent implements OnInit {
       }
     }
 
-    console.log('this is result - main menu : ' + result);
+    // console.log('this is result - main menu : ' + result);
     return result;
 
   }
@@ -136,7 +186,7 @@ export class UserAccessComponent implements OnInit {
     const result = [];
 
     // this.GetAllProducts();
-    console.log(items);
+    // console.log(items);
     for (const item of items) {
       const currentVar = item[column1Name];
       // console.log('debug here : '+currentVar)
@@ -150,9 +200,28 @@ export class UserAccessComponent implements OnInit {
       }
     }
 
-    console.log('this is result 1: ' + result);
+    // console.log('this is result 1: ' + result);
     return result;
 
+  }
+
+  getSelectedUser() {
+    console.log(this.currentSelectedUser);
+    return this.currentSelectedUser;
+
+  }
+
+  x() {
+    // let collection = document.getElementsByTagName("input");
+    // console.log('this is length : '+collection.length);
+    // Array.from(collection).forEach(function (element) {
+    //   console.log(element)
+    // });
+    // let collection = document.querySelectorAll('form');
+
+    // Array.from(collection).forEach(function (element) {
+    //   console.log('this is element : '+element)
+    // });
   }
 
 }
