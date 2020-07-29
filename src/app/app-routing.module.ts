@@ -11,7 +11,7 @@ import { UserAccessComponent } from '../app/components/user-access/user-access.c
 const routes: Routes = [
   {
     path:'',
-    redirectTo: 'useraccess',
+    redirectTo: 'test1',
     pathMatch: 'full'
   },
   {

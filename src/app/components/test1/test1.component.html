@@ -26,270 +26,41 @@
     </select>
   </div>
 
-  <!-- <div style="text-align: center;">
-    <label for="sel1">Select list (select one):</label>
-    <select class="form-control" id="sel1" style="height: 3rem; width: max-content; margin-left: 33.5rem;" (change)="getSelectedUserAccess()">
-      <option>suman</option>
-      <option selected>rony</option>
-      <option>alex</option>
-    </select>
-  </div> -->
-
   <div style=" background-color: #e9ecef; margin-top: 2rem;" class="container">
     <button class="btn btn-block disabled" style="background-color: #d2e6dc;">Set User Permission</button>
     <hr>
 
-    <!-- <form>
-      <div class="form-group row">
-        <label class="col-4">ADMIN</label>
-        <div class="col-8">
-          <div class="custom-control custom-checkbox custom-control-inline">
-            <input name="checkbox" id="checkbox_0" type="checkbox" class="custom-control-input" value="Create User">
-            <label for="checkbox_0" class="custom-control-label">Create User</label>
-          </div>
-          <div class="custom-control custom-checkbox custom-control-inline">
-            <input name="checkbox" id="checkbox_1" type="checkbox" class="custom-control-input" value="User Access">
-            <label for="checkbox_1" class="custom-control-label">User Access</label>
-          </div>
-        </div>
-      </div>
-      <div class="form-group row">
-        <label class="col-4">ACCOUNTS</label>
-        <div class="col-8">
-          <div class="custom-control custom-checkbox custom-control-inline">
-            <input name="checkbox1" id="checkbox1_0" type="checkbox" class="custom-control-input" value="Accounting Head Entry">
-            <label for="checkbox1_0" class="custom-control-label">Accounting Head Entry</label>
-          </div>
-          <div class="custom-control custom-checkbox custom-control-inline">
-            <input name="checkbox1" id="checkbox1_1" type="checkbox" class="custom-control-input" value="Buyer Ledger">
-            <label for="checkbox1_1" class="custom-control-label">Buyer Ledger</label>
-          </div>
-          <div class="custom-control custom-checkbox custom-control-inline">
-            <input name="checkbox1" id="checkbox1_2" type="checkbox" class="custom-control-input" value="Contra Voucher Entry">
-            <label for="checkbox1_2" class="custom-control-label">Contra Voucher Entry</label>
-          </div>
-          <div class="custom-control custom-checkbox custom-control-inline">
-            <input name="checkbox1" id="checkbox1_3" type="checkbox" class="custom-control-input" value="General Ledger">
-            <label for="checkbox1_3" class="custom-control-label">General Ledger</label>
-          </div>
-        </div>
-      </div>
-      <div class="form-group row">
-        <label class="col-4"></label>
-        <div class="col-8">
-          <div class="custom-control custom-checkbox custom-control-inline">
-            <input name="checkbox2" id="checkbox2_0" type="checkbox" class="custom-control-input" value="Item Ledger">
-            <label for="checkbox2_0" class="custom-control-label">Item Ledger</label>
-          </div>
-          <div class="custom-control custom-checkbox custom-control-inline">
-            <input name="checkbox2" id="checkbox2_1" type="checkbox" class="custom-control-input" value=" Ledger Book">
-            <label for="checkbox2_1" class="custom-control-label">Ledger Book</label>
-          </div>
-          <div class="custom-control custom-checkbox custom-control-inline">
-            <input name="checkbox2" id="checkbox2_2" type="checkbox" class="custom-control-input" value="Open Balance for Buyer">
-            <label for="checkbox2_2" class="custom-control-label">Open Balance for Buyer</label>
-          </div>
-        </div>
-      </div>
-      <div class="form-group row">
-        <label class="col-4"></label>
-        <div class="col-8">
-          <div class="custom-control custom-checkbox custom-control-inline">
-            <input name="checkbox3" id="checkbox3_0" type="checkbox" class="custom-control-input" value="Open Balance for Supplier">
-            <label for="checkbox3_0" class="custom-control-label">Open Balance for Supplier</label>
-          </div>
-          <div class="custom-control custom-checkbox custom-control-inline">
-            <input name="checkbox3" id="checkbox3_1" type="checkbox" class="custom-control-input" value="Receive Payment">
-            <label for="checkbox3_1" class="custom-control-label">Receive Payment</label>
-          </div>
-          <div class="custom-control custom-checkbox custom-control-inline">
-            <input name="checkbox3" id="checkbox3_2" type="checkbox" class="custom-control-input" value="Supplier Ledger">
-            <label for="checkbox3_2" class="custom-control-label">Supplier Ledger</label>
-          </div>
-          <div class="custom-control custom-checkbox custom-control-inline">
-            <input name="checkbox3" id="checkbox3_3" type="checkbox" class="custom-control-input" value="Vocher Entry">
-            <label for="checkbox3_3" class="custom-control-label">Vocher Entry</label>
-          </div>
-        </div>
-      </div>
-      <div class="form-group row">
-        <label class="col-4">SALE</label>
-        <div class="col-8">
-          <div class="custom-control custom-checkbox custom-control-inline">
-            <input name="checkbox4" id="checkbox4_0" type="checkbox" class="custom-control-input" value="Buyer">
-            <label for="checkbox4_0" class="custom-control-label">Buyer</label>
-          </div>
-          <div class="custom-control custom-checkbox custom-control-inline">
-            <input name="checkbox4" id="checkbox4_1" type="checkbox" class="custom-control-input" value="Buyer List">
-            <label for="checkbox4_1" class="custom-control-label">Buyer List</label>
-          </div>
-          <div class="custom-control custom-checkbox custom-control-inline">
-            <input name="checkbox4" id="checkbox4_2" type="checkbox" class="custom-control-input" value="MR Search">
-            <label for="checkbox4_2" class="custom-control-label">MR Search</label>
-          </div>
-          <div class="custom-control custom-checkbox custom-control-inline">
-            <input name="checkbox4" id="checkbox4_3" type="checkbox" class="custom-control-input" value="Sale Entry">
-            <label for="checkbox4_3" class="custom-control-label">Sale Entry</label>
-          </div>
-        </div>
-      </div>
-      <div class="form-group row">
-        <label class="col-4"></label>
-        <div class="col-8">
-          <div class="custom-control custom-checkbox custom-control-inline">
-            <input name="checkbox5" id="checkbox5_0" type="checkbox" class="custom-control-input" value="Sale Product Search">
-            <label for="checkbox5_0" class="custom-control-label">Sale Product Search</label>
-          </div>
-          <div class="custom-control custom-checkbox custom-control-inline">
-            <input name="checkbox5" id="checkbox5_1" type="checkbox" class="custom-control-input" value="Buyer Ledger">
-            <label for="checkbox5_1" class="custom-control-label">Buyer Ledger</label>
-          </div>
-          <div class="custom-control custom-checkbox custom-control-inline">
-            <input name="checkbox5" id="checkbox5_2" type="checkbox" class="custom-control-input" value="Sale Return Entry">
-            <label for="checkbox5_2" class="custom-control-label">Sale Return Entry</label>
-          </div>
-        </div>
-      </div>
-      <div class="form-group row">
-        <label class="col-4">INVENTORY</label>
-        <div class="col-8">
-          <div class="custom-control custom-checkbox custom-control-inline">
-            <input name="checkbox6" id="checkbox6_0" type="checkbox" class="custom-control-input" value="Card Entry">
-            <label for="checkbox6_0" class="custom-control-label">Card Entry</label>
-          </div>
-          <div class="custom-control custom-checkbox custom-control-inline">
-            <input name="checkbox6" id="checkbox6_1" type="checkbox" class="custom-control-input" value="Damage Adjust">
-            <label for="checkbox6_1" class="custom-control-label">Damage Adjust</label>
-          </div>
-          <div class="custom-control custom-checkbox custom-control-inline">
-            <input name="checkbox6" id="checkbox6_2" type="checkbox" class="custom-control-input" value="Item Entry">
-            <label for="checkbox6_2" class="custom-control-label">Item Entry</label>
-          </div>
-          <div class="custom-control custom-checkbox custom-control-inline">
-            <input name="checkbox6" id="checkbox6_3" type="checkbox" class="custom-control-input" value="Item Search">
-            <label for="checkbox6_3" class="custom-control-label">Item Search</label>
-          </div>
-        </div>
-      </div>
-      <div class="form-group row">
-        <label class="col-4"></label>
-        <div class="col-8">
-          <div class="custom-control custom-checkbox custom-control-inline">
-            <input name="checkbox7" id="checkbox7_0" type="checkbox" class="custom-control-input" value="Opening Balance">
-            <label for="checkbox7_0" class="custom-control-label">Opening Balance</label>
-          </div>
-          <div class="custom-control custom-checkbox custom-control-inline">
-            <input name="checkbox7" id="checkbox7_1" type="checkbox" class="custom-control-input" value="Opening Quantity">
-            <label for="checkbox7_1" class="custom-control-label">Opening Quantity</label>
-          </div>
-          <div class="custom-control custom-checkbox custom-control-inline">
-            <input name="checkbox7" id="checkbox7_2" type="checkbox" class="custom-control-input" value="Stock Position">
-            <label for="checkbox7_2" class="custom-control-label">Stock Position</label>
-          </div>
-          <div class="custom-control custom-checkbox custom-control-inline">
-            <input name="checkbox7" id="checkbox7_3" type="checkbox" class="custom-control-input" value="Unit Entry">
-            <label for="checkbox7_3" class="custom-control-label">Unit Entry</label>
-          </div>
-        </div>
-      </div>
-      <div class="form-group row">
-        <label class="col-4">RECEIVED GOODS</label>
-        <div class="col-8">
-          <div class="custom-control custom-checkbox custom-control-inline">
-            <input name="checkbox8" id="checkbox8_0" type="checkbox" class="custom-control-input" value="Purchase Chalan">
-            <label for="checkbox8_0" class="custom-control-label">Purchase Chalan</label>
-          </div>
-          <div class="custom-control custom-checkbox custom-control-inline">
-            <input name="checkbox8" id="checkbox8_1" type="checkbox" class="custom-control-input" value="Purchase Edit">
-            <label for="checkbox8_1" class="custom-control-label">Purchase Edit</label>
-          </div>
-          <div class="custom-control custom-checkbox custom-control-inline">
-            <input name="checkbox8" id="checkbox8_2" type="checkbox" class="custom-control-input" value="Purchase Entry">
-            <label for="checkbox8_2" class="custom-control-label">Purchase Entry</label>
-          </div>
-          <div class="custom-control custom-checkbox custom-control-inline">
-            <input name="checkbox8" id="checkbox8_3" type="checkbox" class="custom-control-input" value="Purchase Product Search Details">
-            <label for="checkbox8_3" class="custom-control-label">Purchase Product Search Details</label>
-          </div>
-        </div>
-      </div>
-      <div class="form-group row">
-        <label class="col-4"></label>
-        <div class="col-8">
-          <div class="custom-control custom-checkbox custom-control-inline">
-            <input name="checkbox9" id="checkbox9_0" type="checkbox" class="custom-control-input" value="Purchase Return">
-            <label for="checkbox9_0" class="custom-control-label">Purchase Return</label>
-          </div>
-          <div class="custom-control custom-checkbox custom-control-inline">
-            <input name="checkbox9" id="checkbox9_1" type="checkbox" class="custom-control-input" value="Supplier Info Entry">
-            <label for="checkbox9_1" class="custom-control-label">Supplier Info Entry</label>
-          </div>
-        </div>
-      </div>
-      <div class="form-group row">
-        <div class="offset-4 col-8">
-          <button name="submit" type="submit" class="btn btn-primary">Submit</button>
-        </div>
-      </div>
-    </form> -->
-    <!-- note : inside 2nd ng for we must write string like this -->
     <form>
 
       <div class="form-group row" *ngFor="let firstColumn of mapMenusFirstColumn; index as i;">
         <label class="col-4">{{firstColumn}}</label>
         <div class="col-8">
-          <!-- <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" checked="checked" id="inlineCheckbox1" value="option1">
-            <label class="form-check-label" for="inlineCheckbox1">1</label>
-          </div>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-            <label class="form-check-label" for="inlineCheckbox2">2</label>
-          </div> -->
-          <!-- <div class="custom-control custom-checkbox custom-control-inline"
+
+          <div class="form-check form-check-inline"
             *ngFor="let secondColumn of this.getSecondColumn(this.mapMenu,firstColumn); index as j;">
 
-            <div *ngIf="isInFetchMap(secondColumn); else elseBlock">
-              <input name="checkbox{{i}}" id="checkbox{{i+'_'+j}}" type="checkbox" class="custom-control-input"
-              value={{secondColumn}} (change)="updateAccess(firstColumn,secondColumn)" checked>
-            </div>
-            <ng-template #elseBlock>
-              <input name="checkbox{{i}}" id="checkbox{{i+'_'+j}}" type="checkbox" class="custom-control-input"
-              value={{secondColumn}} (change)="updateAccess(firstColumn,secondColumn)">
-            </ng-template>
+            <div *ngIf="isInFetchMap(secondColumn); then thenBlock else elseBlock"></div>
+            <ng-template #thenBlock>
 
-
-            <input name="checkbox{{i}}" id="checkbox{{i+'_'+j}}" type="checkbox" class="custom-control-input"
-              value={{secondColumn}} (change)="updateAccess(firstColumn,secondColumn)">
-
-            <label for="checkbox{{i+'_'+j}}" class="custom-control-label">{{secondColumn}}</label>
-          </div> -->
-
-          <div *ngFor="let secondColumn of this.getSecondColumn(this.mapMenu,firstColumn); index as j;">
-            <div class="form-check form-check-inline" *ngIf="isInFetchMap(secondColumn); else elseBlock">
               <input name="checkbox{{i}}" id="checkbox{{i+'_'+j}}" type="checkbox" checked="checked"
-                value={{secondColumn}} (change)="updateAccess(firstColumn,secondColumn)" checked>
-            </div>
-            <ng-template #elseBlock>
-              <div class="form-check form-check-inline">
-                <input name="checkbox{{i}}" id="checkbox{{i+'_'+j}}" type="checkbox" value={{secondColumn}}
-                  (change)="updateAccess(firstColumn,secondColumn)">
-              </div>
+                class="form-check-input" value={{secondColumn}}>
+              <label for="checkbox_0" class="form-check-label">{{secondColumn}}</label>
+
             </ng-template>
 
+            <ng-template #elseBlock>
 
-            <!-- <input name="checkbox{{i}}" id="checkbox{{i+'_'+j}}" type="checkbox" class="custom-control-input"
-              value={{secondColumn}} (change)="updateAccess(firstColumn,secondColumn)"> -->
+              <input name="checkbox{{i}}" id="checkbox{{i+'_'+j}}" type="checkbox"
+                class="form-check-input" value={{secondColumn}}>
+              <label for="checkbox_0" class="form-check-label">{{secondColumn}}</label>
 
-            <label for="checkbox{{i+'_'+j}}">{{secondColumn}}</label>
+            </ng-template>
+
           </div>
-
-
-
-
 
         </div>
       </div>
+
       <div class="form-group row">
         <div class="offset-4 col-8">
           <button name="submit" type="submit" class="btn btn-primary">Submit</button>
@@ -298,14 +69,3 @@
     </form>
   </div>
 </div>
-
-
-<!-- <div class="form-group" style="margin-left: 24rem; margin-right: 10rem">
-    <p style="text-align: left;">Select User:</p>
-    <select class="form-control" id="sel1" style="height: 3rem;">
-      <option>Suman</option>
-      <option>2</option>
-      <option>3</option>
-      <option>4</option>
-    </select>
-  </div> -->
