@@ -17,13 +17,23 @@
 
   <div style="text-align: center;">
     <p>Select User : </p>
-    <select [(ngModel)]="currentSelectedUser" class="form-control" id="userSelect1" style="height: 3rem; width: max-content; margin-left: 33.5rem;" (change)="getSelectedUser()">
-      <option></option>
+    <select [(ngModel)]="currentSelectedUser" class="form-control" id="userSelect1"
+      style="height: 3rem; width: max-content; margin-left: 33.5rem;" (change)="getSelectedUserAccess()">
+
       <option>suman</option>
-      <option>rony</option>
+      <option selected>rony</option>
       <option>alex</option>
     </select>
   </div>
+
+  <!-- <div style="text-align: center;">
+    <label for="sel1">Select list (select one):</label>
+    <select class="form-control" id="sel1" style="height: 3rem; width: max-content; margin-left: 33.5rem;" (change)="getSelectedUserAccess()">
+      <option>suman</option>
+      <option selected>rony</option>
+      <option>alex</option>
+    </select>
+  </div> -->
 
   <div style=" background-color: #e9ecef; margin-top: 2rem;" class="container">
     <button class="btn btn-block disabled" style="background-color: #d2e6dc;">Set User Permission</button>
@@ -224,17 +234,60 @@
     </form> -->
     <!-- note : inside 2nd ng for we must write string like this -->
     <form>
+
       <div class="form-group row" *ngFor="let firstColumn of mapMenusFirstColumn; index as i;">
         <label class="col-4">{{firstColumn}}</label>
         <div class="col-8">
-          <div class="custom-control custom-checkbox custom-control-inline"
-            *ngFor="let secondColumn of this.getSecondColumn(this.mapMenu,firstColumn); index as j;">
-            <input name="checkbox{{i}}" id="checkbox{{i+'_'+j}}" type="checkbox" class="custom-control-input"
-            value={{secondColumn}}>
-            <!-- <input name="checkbox" id="checkbox{{i+'_'+j}}" type="checkbox" class="custom-control-input"
-              value={{secondColumn}}> -->
-            <label for="checkbox{{i+'_'+j}}" class="custom-control-label">{{secondColumn}}</label>
+          <!-- <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" checked="checked" id="inlineCheckbox1" value="option1">
+            <label class="form-check-label" for="inlineCheckbox1">1</label>
           </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+            <label class="form-check-label" for="inlineCheckbox2">2</label>
+          </div> -->
+          <!-- <div class="custom-control custom-checkbox custom-control-inline"
+            *ngFor="let secondColumn of this.getSecondColumn(this.mapMenu,firstColumn); index as j;">
+
+            <div *ngIf="isInFetchMap(secondColumn); else elseBlock">
+              <input name="checkbox{{i}}" id="checkbox{{i+'_'+j}}" type="checkbox" class="custom-control-input"
+              value={{secondColumn}} (change)="updateAccess(firstColumn,secondColumn)" checked>
+            </div>
+            <ng-template #elseBlock>
+              <input name="checkbox{{i}}" id="checkbox{{i+'_'+j}}" type="checkbox" class="custom-control-input"
+              value={{secondColumn}} (change)="updateAccess(firstColumn,secondColumn)">
+            </ng-template>
+
+
+            <input name="checkbox{{i}}" id="checkbox{{i+'_'+j}}" type="checkbox" class="custom-control-input"
+              value={{secondColumn}} (change)="updateAccess(firstColumn,secondColumn)">
+
+            <label for="checkbox{{i+'_'+j}}" class="custom-control-label">{{secondColumn}}</label>
+          </div> -->
+
+          <div *ngFor="let secondColumn of this.getSecondColumn(this.mapMenu,firstColumn); index as j;">
+            <div class="form-check form-check-inline" *ngIf="isInFetchMap(secondColumn); else elseBlock">
+              <input name="checkbox{{i}}" id="checkbox{{i+'_'+j}}" type="checkbox" checked="checked"
+                value={{secondColumn}} (change)="updateAccess(firstColumn,secondColumn)" checked>
+            </div>
+            <ng-template #elseBlock>
+              <div class="form-check form-check-inline">
+                <input name="checkbox{{i}}" id="checkbox{{i+'_'+j}}" type="checkbox" value={{secondColumn}}
+                  (change)="updateAccess(firstColumn,secondColumn)">
+              </div>
+            </ng-template>
+
+
+            <!-- <input name="checkbox{{i}}" id="checkbox{{i+'_'+j}}" type="checkbox" class="custom-control-input"
+              value={{secondColumn}} (change)="updateAccess(firstColumn,secondColumn)"> -->
+
+            <label for="checkbox{{i+'_'+j}}">{{secondColumn}}</label>
+          </div>
+
+
+
+
+
         </div>
       </div>
       <div class="form-group row">
@@ -244,7 +297,6 @@
       </div>
     </form>
   </div>
-
 </div>
 
 

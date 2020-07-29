@@ -12,22 +12,143 @@ export class UserAccessComponent implements OnInit {
 
   // @ViewChild('myDiv') myDiv: ElementRef;
 
+  users = []
   currentSelectedUser;
   mapMenu = new Map();
   mapMenusFirstColumn = [];
   mapMenusSecondColumn = [];
+  fetchMap = new Map();
+  updateMap = new Map();
+
+  getAllUsers(){
+    let getUsers = ['suman','rony','alex'];
+    this.users = getUsers;
+    this.currentSelectedUser = getUsers[0];
+    return getUsers;
+  }
+
   // mapMenusFirstColumn = this.getFirstColumn(this.getMenu());
   constructor(private userAccessOneService: UserAccessOneService) {
   }
 
   ngOnInit(): void {
+
+    this.getAllUsers();
+    this.setFirstColumn();
     // this.getOneUserAccess();
     // this.getDistinctMainMenuValues();
-    this.selectedHero();
+    //this.selectedHero();
     // this.getMenu();
     this.setMap();
-    this.setFirstColumn();
-    this.x();
+    this.getOneUserAccess();
+
+
+  }
+
+  isInFetchMap(accessValue: string, checkboxId?: string) {
+    console.log(accessValue);
+    if (this.fetchMap.size !== 0) {
+      for (let entry of this.fetchMap.entries()) {
+        let accessRow = entry[1];
+        for (let access of accessRow) {
+          if (access.toString().trim() === accessValue.toString().trim()) {
+            console.log("found");
+            // console.log(document.getElementById(checkboxId));
+            return true;
+          }
+        }
+      }
+    }
+    return false;
+  }
+
+
+
+  // fetechAccess(entries: string[]) {
+  //   if (entries.length !== 0) {
+  //     for (let entry of entries) {
+  //       this.fetchMap.set(entry[0], entry[1]);
+  //     }
+  //   }
+
+  //   for (const entry of entries) {
+  //     console.log('this is fetched access :  entry[0] : ' + entry[0] + ' entry[1] : ' + entry[1]);
+  //   }
+  // }
+
+  updateAccess(accessKey: string, accessValue: string) {
+    console.log("this is user: " + this.getSelectedUser() + " this is key : " + accessKey + " this is value: " + accessValue);
+
+    let entryFound = false;
+    for (let entry of this.updateMap.entries()) {
+      // console.log('this is entry : '+entry+ ' this is entry[0] : '+entry[0]+' this is entry[1] :'+entry[1]);
+      // console.log('this is access : ', [accessKey, accessValue]);
+
+      let x: string[] = entry[1];
+      let y: string[] = [accessKey, accessValue];
+
+      console.log('this is x : ' + x + ' this is y : ' + y);
+
+      if (x.toString().trim() === y.toString().trim()) {
+        entryFound = true;
+        this.updateMap.delete(entry[0]);
+        console.log('deleted : ')
+        if (this.updateMap.size === 0) {
+          console.log('this is update map : NO ENTRY');
+        }
+        break;
+      }
+    }
+
+
+    if (entryFound === false) {
+      this.updateMap.set(this.updateMap.size.toString(), [accessKey, accessValue]);
+      console.log('added : ')
+    }
+
+    //Iterate over map entries
+    for (let entry of this.updateMap.entries()) {
+
+      console.log('this is update map : ', 'this is first index : ', entry[0], 'this is second index: ', entry[1]);
+    }
+    // if(this.updateMap.){
+
+    // }
+    // let map = new Map();
+    // map = this.getMenu();
+
+    // let key;
+    // let value;
+    // //Iterate over map entries
+    // for (let entry of map.entries()) {
+    //   console.log('this is map : ', entry[0], entry[1]);
+    //   key = entry[0];
+    //   for (let newEntry of entry[1]) {
+    //     value = newEntry;
+    //     if (entry[1] === accessValue) {
+    //       break;
+    //     }
+    //   }
+    // }
+
+    // for (let entry of this.updateMap) {
+    //   let isAccessGiven = false;
+    //   let trackEntryIndex = 0;
+
+    //   // if (entry[0] === accessKey && entry[1] === accessValue) {
+    //   //   isAccessGiven = true;
+    //   //   this.updateMap.delete(trackEntryIndex);
+    //   //   break;
+    //   // }
+    //   // if (isAccessGiven === false) {
+
+    //   //   this.updateMap.set(this.getMapSize(this.updateMap), [accessKey, accessValue]);
+
+    //   // }
+    // }
+
+
+
   }
 
   trackByFn(i: number) {
@@ -86,7 +207,7 @@ export class UserAccessComponent implements OnInit {
   }
 
   selectedHero() {
-    var elements = (<HTMLInputElement[]><any>document.getElementsByName("form"));
+    var elements = (<HTMLInputElement[]><any>document.getElementsByName("checkbox"));
     for (let i = 0; i < elements.length; i++) {
       if (elements[i].type == "checkbox") {
         if (elements[i].checked) {
@@ -106,15 +227,20 @@ export class UserAccessComponent implements OnInit {
   }
 
   async getOneUserAccess() {
-    const response = await this.userAccessOneService.GetOneUserAccess('rony');
-    const userAccessOneService = await response.json();
-    this.userAccessOneService.jsonResponse = userAccessOneService;
-    console.log('this is response : ' + this.userAccessOneService.jsonResponse);
-    // this.userAccessOneService.setJsonResponse(userAccessOneService);
-    // console.log(userAccessOneService);
-    // this.getDistinctMainMenu(userAccessOneService, 'mainmenu');
-    // this.getDistinctMenuName(userAccessOneService, 'mainmenu', 'menuname', 'ACCOUNTS');
-    // this.getKeyValuePair(userAccessOneService, this.getDistinctMainMenu(userAccessOneService, 'mainmenu'), 'mainmenu', 'menuname');
+    const response = await this.userAccessOneService.GetOneUserAccess(this.getSelectedUser());
+    const responseToJson = await response.json();
+    this.userAccessOneService.setJsonResponse(responseToJson);
+    //this.userAccessOneService.jsonResponse = responseToJson;
+    console.log('this is responseToJson : ' + responseToJson);
+    console.log('from data service : this is jsonresponse : ' + this.userAccessOneService.jsonResponse);
+    //console.log(userAccessOneService);
+    //this.getDistinctMainMenu(userAccessOneService, 'mainmenu');
+    //this.getDistinctMenuName(userAccessOneService, 'mainmenu', 'menuname', 'ACCOUNTS');
+    this.fetchMap = this.getKeyValuePair(this.userAccessOneService.getJsonResponse(), this.getDistinctMainMenu(this.userAccessOneService.getJsonResponse(), 'mainmenu'), 'mainmenu', 'menuname');
+
+    for (const entry of this.fetchMap.entries()) {
+      console.log('this is fetch map :  entry[0] : ' + entry[0] + ' entry[1] : ' + entry[1]);
+    }
   }
 
   getKeyValuePair(data: string[], items: string[], column1Name: string, column2Name: string) {
@@ -211,17 +337,7 @@ export class UserAccessComponent implements OnInit {
 
   }
 
-  x() {
-    // let collection = document.getElementsByTagName("input");
-    // console.log('this is length : '+collection.length);
-    // Array.from(collection).forEach(function (element) {
-    //   console.log(element)
-    // });
-    // let collection = document.querySelectorAll('form');
-
-    // Array.from(collection).forEach(function (element) {
-    //   console.log('this is element : '+element)
-    // });
+  getSelectedUserAccess() {
+    this.getOneUserAccess();
   }
-
 }

@@ -1,10 +1,9 @@
 {
-
   "logins": [
     {
-      "username": "rony",
-      "email": "Accounting Head Entry",
-      "password1": "ACCOUNTS"
+      "username": "a",
+      "email": "a",
+      "password1": "a"
     }
   ],
   "passwordreset": [
@@ -186,21 +185,21 @@
       "item_name": "pencil",
       "item_quantity": "20",
       "item_rate": "5.5",
-      "item_purchase_date":"2020-05-09"
+      "item_purchase_date": "2020-05-09"
     },
     {
       "item_id": "1001",
       "item_name": "pen",
       "item_quantity": "10",
       "item_rate": "5.5",
-      "item_purchase_date":"2020-04-04"
+      "item_purchase_date": "2020-04-04"
     },
     {
       "item_id": "1002",
       "item_name": "rubber",
       "item_quantity": "5",
       "item_rate": "5.5",
-      "item_purchase_date":"2019-01-01"
+      "item_purchase_date": "2019-01-01"
     }
   ],
   "usersec": [
@@ -228,7 +227,11 @@
       "userid": "rony",
       "menuname": "Ledger Book",
       "mainmenu": "ACCOUNTS"
+    },
+    {
+      "userid": "alex",
+      "menuname": "Unit Entry",
+      "mainmenu": "INVENTORY"
     }
   ]
-
 }
