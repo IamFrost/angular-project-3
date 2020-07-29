@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UserAccessOneService } from "../services/user-access-one/user-access-one.service";
+import { UserAccessOneService } from "../../services/user-access-one/user-access-one.service";
 // import {AfterViewInit, ElementRef, ViewChild} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
@@ -9,8 +9,6 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['./user-access.component.css']
 })
 export class UserAccessComponent implements OnInit {
-
-  // @ViewChild('myDiv') myDiv: ElementRef;
 
   users = []
   currentSelectedUser;
