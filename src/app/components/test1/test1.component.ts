@@ -44,13 +44,13 @@ export class Test1Component implements OnInit {
   }
 
   isInFetchMap(accessValue: string, checkboxId?: string) {
-    console.log(accessValue);
+    // console.log("From isInFetchMap: accessValue - "+accessValue);
     if (this.fetchMap.size !== 0) {
       for (let entry of this.fetchMap.entries()) {
         let accessRow = entry[1];
         for (let access of accessRow) {
           if (access.toString().trim() === accessValue.toString().trim()) {
-            console.log("found");
+            // console.log("found : From isInFetchMap: accessValue - "+accessValue.toString().trim());
             // console.log(document.getElementById(checkboxId));
             return true;
           }
