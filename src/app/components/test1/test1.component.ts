@@ -198,9 +198,9 @@ export class Test1Component implements OnInit {
       'Purchase Product Search Details', 'Supplier Info Entry']);
 
     //Iterate over map entries
-    for (let entry of map.entries()) {
-      console.log('this is map : ', entry[0], entry[1]);
-    }
+    // for (let entry of map.entries()) {
+    //   console.log('this is map : ', entry[0], entry[1]);
+    // }
     return map;
   }
 
