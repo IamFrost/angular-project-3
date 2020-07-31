@@ -20,12 +20,17 @@ insert into usersec values('alex','Unit Entry','INVENTORY');
 
 create table logins
 (
+  id SERIAL
 	username varchar(255),
 	email varchar(255),
-	password1 varchar(255)
+	password1 varchar(255),
+  privilege varchar(255)
 );
 
-insert into logins values('a','a@a.a','a');
+insert into logins values('a','a@a.a','a','admin');
+insert into logins values('rony','rony@mycompany.com','a','user');
+insert into logins values('alex','alex@thatcompany.com','a','user');
+insert into logins values('b','b@b.b','b','user');
 
 
 

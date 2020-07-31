@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
 import { HttpClient } from '@angular/common/http';
+import { Usersec } from '../../models/usersec';
+import { from, Observable, throwError } from 'rxjs';
+import { map, catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -17,16 +19,49 @@ export class UserAccessOneService {
 
   jsonResponse = [];
 
-  constructor(private httpCLient: HttpClient) { }
+  currentUserJsonResponse = [];
+  currentUser = '';
+  currentUserPriviledge = '';
+
+  constructor(private httpClient: HttpClient) { }
 
   setJsonResponse(response: string[]) {
     this.jsonResponse = response;
   }
   getJsonResponse() {
-    return this.jsonResponse
+    return this.jsonResponse;
+  }
+  setCurrentUser(userid: string) {
+    this.currentUser = userid;
+  }
+  getCurrentUser() {
+    return this.currentUser;
+  }
+  setCurrentPriviledge(privilege: string) {
+    this.currentUserPriviledge;
+  }
+  getCurrentPriviledge(){
+    return this.currentUserPriviledge;
+  }
+  setCurrentUserJsonResponse(response: string[]){
+    this.currentUserJsonResponse = response;
+  }
+  getCurrentUserJsonResponse(){
+    return this.currentUserJsonResponse;
   }
 
 
+
+  getUsers() {
+    return this.httpClient.get(`http://localhost:3000/usersec/rony`).
+        pipe(
+           map((data: Usersec[]) => {
+             return data;
+           }), catchError( error => {
+             return throwError( 'Something went wrong!' );
+           })
+        )
+    }
 
   GetAllUserAccess() {
     return fetch(this.baseUrlUsersec);
@@ -35,7 +70,7 @@ export class UserAccessOneService {
     return fetch(this.baseUrlUsersecWithSlash + userIdInput);
   }
   Delete_A_Purchase(userIdInput: string) {
-    return fetch(this.baseUrlUsersecWithSlash + userIdInput,{
+    return fetch(this.baseUrlUsersecWithSlash + userIdInput, {
       method: 'DELETE'
     });
   }

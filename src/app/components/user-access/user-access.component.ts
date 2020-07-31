@@ -10,7 +10,7 @@ import { FormsModule } from '@angular/forms';
 })
 export class UserAccessComponent implements OnInit {
 
-  users = []
+  users = [];
   currentSelectedUser;
   mapMenu = new Map();
   mapMenusFirstColumn = [];
