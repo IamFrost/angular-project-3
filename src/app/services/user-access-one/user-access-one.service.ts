@@ -38,7 +38,7 @@ export class UserAccessOneService {
     return this.currentUser;
   }
   setCurrentPriviledge(privilege: string) {
-    this.currentUserPriviledge;
+    this.currentUserPriviledge = privilege;
   }
   getCurrentPriviledge(){
     return this.currentUserPriviledge;
@@ -52,16 +52,16 @@ export class UserAccessOneService {
 
 
 
-  getUsers() {
-    return this.httpClient.get(`http://localhost:3000/usersec/rony`).
-        pipe(
-           map((data: Usersec[]) => {
-             return data;
-           }), catchError( error => {
-             return throwError( 'Something went wrong!' );
-           })
-        )
-    }
+  // getUsers() {
+  //   return this.httpClient.get(`http://localhost:3000/usersec/rony`).
+  //       pipe(
+  //          map((data: Usersec[]) => {
+  //            return data;
+  //          }), catchError( error => {
+  //            return throwError( 'Something went wrong!' );
+  //          })
+  //       )
+  //   }
 
   GetAllUserAccess() {
     return fetch(this.baseUrlUsersec);
