@@ -16,10 +16,10 @@ export class Test1Component implements OnInit {
   mapMenusFirstColumn = [];
   mapMenusSecondColumn = [];
   fetchMap = new Map();
-  updateMap = new Map();
+  updateMap = new Map<string, Set<string>>();
 
-  getAllUsers(){
-    let getUsers = ['suman','rony','alex'];
+  getAllUsers() {
+    let getUsers = ['suman', 'rony', 'alex'];
     this.users = getUsers;
     this.currentSelectedUser = getUsers[0];
     return getUsers;
@@ -60,93 +60,49 @@ export class Test1Component implements OnInit {
     return false;
   }
 
+  isFoundInSet(set: Set<string>) {
 
+    for (let entry of set.keys()) {
 
-  // fetechAccess(entries: string[]) {
-  //   if (entries.length !== 0) {
-  //     for (let entry of entries) {
-  //       this.fetchMap.set(entry[0], entry[1]);
-  //     }
-  //   }
-
-  //   for (const entry of entries) {
-  //     console.log('this is fetched access :  entry[0] : ' + entry[0] + ' entry[1] : ' + entry[1]);
-  //   }
-  // }
-
-  updateAccess(accessKey: string, accessValue: string) {
-    console.log("this is user: " + this.getSelectedUser() + " this is key : " + accessKey + " this is value: " + accessValue);
+      //console.log('this is update map : ', 'this is first index : ', entry[0], 'this is second index: ', entry[1]);
+    }
+  }
+  updateAccess(firstColumnValue: string, secondColumnValue: string) {
+    //console.log("this is user: " + this.getSelectedUser() + " this is firstColumnValue : " + firstColumnValue + " this is secondColumnValue: " + secondColumnValue);
 
     let entryFound = false;
+    let searchflag = 0;
     for (let entry of this.updateMap.entries()) {
-      // console.log('this is entry : '+entry+ ' this is entry[0] : '+entry[0]+' this is entry[1] :'+entry[1]);
-      // console.log('this is access : ', [accessKey, accessValue]);
-
-      let x: string[] = entry[1];
-      let y: string[] = [accessKey, accessValue];
-
-      console.log('this is x : ' + x + ' this is y : ' + y);
-
-      if (x.toString().trim() === y.toString().trim()) {
-        entryFound = true;
-        this.updateMap.delete(entry[0]);
-        console.log('deleted : ')
-        if (this.updateMap.size === 0) {
-          console.log('this is update map : NO ENTRY');
+      if (entry[0].toString().trim() === firstColumnValue.toString().trim()) {
+        searchflag = 1;
+        if (entry[1].has(secondColumnValue.toString().trim())) {
+          entryFound = true;
+          searchflag = 2;
+          this.updateMap.delete(entry[0]);
+          console.log("deleted : ")
+          break;
         }
-        break;
+        if (searchflag === 1) {
+          entry[1].add(secondColumnValue);
+          this.updateMap.set(firstColumnValue, entry[1]);
+          console.log("added : ");
+          break;
+        }
       }
     }
-
-
-    if (entryFound === false) {
-      this.updateMap.set(this.updateMap.size.toString(), [accessKey, accessValue]);
-      console.log('added : ')
+    if (searchflag === 0 && entryFound === false) {
+      let secondColumnSet = new Set<string>();
+      secondColumnSet.add(secondColumnValue);
+      this.updateMap.set(firstColumnValue, secondColumnSet);
+      console.log("added : ");
     }
 
     //Iterate over map entries
     for (let entry of this.updateMap.entries()) {
-
-      console.log('this is update map : ', 'this is first index : ', entry[0], 'this is second index: ', entry[1]);
+      for(let key of entry[1].keys()){
+        console.log('this is update map : ' + 'this is first index : '+ entry[0] + ' this is second index: ', key);
+      }
     }
-    // if(this.updateMap.){
-
-    // }
-    // let map = new Map();
-    // map = this.getMenu();
-
-    // let key;
-    // let value;
-    // //Iterate over map entries
-    // for (let entry of map.entries()) {
-    //   console.log('this is map : ', entry[0], entry[1]);
-    //   key = entry[0];
-    //   for (let newEntry of entry[1]) {
-    //     value = newEntry;
-    //     if (entry[1] === accessValue) {
-    //       break;
-    //     }
-    //   }
-    // }
-
-    // for (let entry of this.updateMap) {
-    //   let isAccessGiven = false;
-    //   let trackEntryIndex = 0;
-
-    //   // if (entry[0] === accessKey && entry[1] === accessValue) {
-    //   //   isAccessGiven = true;
-    //   //   this.updateMap.delete(trackEntryIndex);
-    //   //   break;
-    //   // }
-    //   // if (isAccessGiven === false) {
-
-    //   //   this.updateMap.set(this.getMapSize(this.updateMap), [accessKey, accessValue]);
-
-    //   // }
-    // }
-
-
-
   }
 
   trackByFn(i: number) {
@@ -229,16 +185,20 @@ export class Test1Component implements OnInit {
     const responseToJson = await response.json();
     this.userAccessOneService.setJsonResponse(responseToJson);
     //this.userAccessOneService.jsonResponse = responseToJson;
-    console.log('this is responseToJson : ' + responseToJson);
-    console.log('from data service : this is jsonresponse : ' + this.userAccessOneService.jsonResponse);
+    //console.log('this is responseToJson : ' + responseToJson);
+    //console.log('from data service : this is jsonresponse : ' + this.userAccessOneService.jsonResponse);
     //console.log(userAccessOneService);
     //this.getDistinctMainMenu(userAccessOneService, 'mainmenu');
     //this.getDistinctMenuName(userAccessOneService, 'mainmenu', 'menuname', 'ACCOUNTS');
     this.fetchMap = this.getKeyValuePair(this.userAccessOneService.getJsonResponse(), this.getDistinctMainMenu(this.userAccessOneService.getJsonResponse(), 'mainmenu'), 'mainmenu', 'menuname');
+    //this.updateMap = this.fetchMap;
 
-    for (const entry of this.fetchMap.entries()) {
-      console.log('this is fetch map :  entry[0] : ' + entry[0] + ' entry[1] : ' + entry[1]);
-    }
+    // for (const entry of this.fetchMap.entries()) {
+    //   console.log('this is fetch map :  entry[0] : ' + entry[0] + ' entry[1] : ' + entry[1]);
+    // }
+    // for (const entry of this.updateMap.entries()) {
+    //   console.log('this is update map :  entry[0] : ' + entry[0] + ' entry[1] : ' + entry[1]);
+    // }
   }
 
   getKeyValuePair(data: string[], items: string[], column1Name: string, column2Name: string) {
