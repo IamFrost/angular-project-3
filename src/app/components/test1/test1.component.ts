@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { UserAccessOneService } from "../../services/user-access-one/user-access-one.service";
+import { LoginService } from "../../services/login/login.service";
 import { FormsModule } from '@angular/forms';
+import { map } from 'rxjs/operators';
+import { Usersec } from 'src/app/models/usersec';
 
 @Component({
   selector: 'app-test1',
@@ -10,25 +13,21 @@ import { FormsModule } from '@angular/forms';
 export class Test1Component implements OnInit {
 
   users = [];
-  currentSelectedUser;
+  currentSelectedUser: string;
   mapMenu = new Map();
   mapMenusFirstColumn = [];
   mapMenusSecondColumn = [];
+  allUsers: Array<string> = [];
+  userSet = new Set<string>();
+  userMap = new Map<string, Set<string>>();
   fetchMap = new Map<string, Set<string>>();
   updateMap = new Map<string, Set<string>>();
 
-  getAllUsers() {
-    let getUsers = ['suman', 'rony', 'alex'];
-    this.users = getUsers;
-    this.currentSelectedUser = getUsers[0];
-    return getUsers;
-  }
-
-  constructor(private userAccessOneService: UserAccessOneService) {
+  constructor(private userAccessOneService: UserAccessOneService,
+    private loginService: LoginService) {
   }
 
   ngOnInit(): void {
-
     this.getAllUsers();
     this.setFirstColumn();
     this.setMap();
@@ -82,8 +81,8 @@ export class Test1Component implements OnInit {
 
     //Iterate over map entries
     for (let entry of this.updateMap.entries()) {
-      for(let key of entry[1].keys()){
-        console.log('this is update map : ' + 'this is first index : '+ entry[0] + ' this is second index: ', key);
+      for (let key of entry[1].keys()) {
+        console.log('this is update map : ' + 'this is first index : ' + entry[0] + ' this is second index: ', key);
       }
     }
   }
@@ -116,7 +115,6 @@ export class Test1Component implements OnInit {
     for (let entry of map.entries()) {
       firstColumn.push(entry[0]);
     }
-
     return firstColumn;
   }
 
@@ -138,12 +136,30 @@ export class Test1Component implements OnInit {
     return map;
   }
 
+  async getAllUsers() {
+    const response = await this.loginService.GetAllLogins();
+    const responseToJson = await response.json();
+    for (let entry of responseToJson) {
+      this.userSet.add(entry['username']);
+    }
+  }
+
   async getOneUserAccess() {
     const response = await this.userAccessOneService.GetOneUserAccess(this.getSelectedUser());
-    const responseToJson = await response.json();
-    this.userAccessOneService.setJsonResponse(responseToJson);
-    this.fetchMap = this.getKeyValuePair(this.userAccessOneService.getJsonResponse(), this.getDistinctMainMenu(this.userAccessOneService.getJsonResponse(), 'mainmenu'), 'mainmenu', 'menuname');
-    this.updateMap = this.fetchMap;
+    if(response){
+      const responseToJson = await response.json();
+      if(responseToJson){
+        this.userAccessOneService.setJsonResponse(responseToJson);
+        this.fetchMap = this.getKeyValuePair(this.userAccessOneService.getJsonResponse(), this.getDistinctMainMenu(this.userAccessOneService.getJsonResponse(), 'mainmenu'), 'mainmenu', 'menuname');
+        this.updateMap = this.fetchMap;
+      }
+      else{
+        console.log("can't convert response to json : "+responseToJson);
+      }
+    }
+    else{
+      console.log("response not found : "+response);
+    }
   }
 
   getKeyValuePair(data: string[], items: string[], column1Name: string, column2Name: string) {
@@ -160,9 +176,10 @@ export class Test1Component implements OnInit {
     return map;
   }
 
-  getDistinctMainMenu(items: string[], column1Name: string) {
+  getDistinctMainMenu(items: any, column1Name: string) {
     const lookup = {};
     const result = [];
+
     for (const item of items) {
       const currentVar = item[column1Name];
       if (!(currentVar in lookup)) {
@@ -170,11 +187,12 @@ export class Test1Component implements OnInit {
         result.push(currentVar);
       }
     }
+
     return result;
   }
 
   getDistinctMenuName(items: string[], column1Name: string, column2Name: string, column1Value: string) {
-
+    console.log('this is items : ' + items.toString());
     const lookup = {};
     const result = [];
     for (const item of items) {
@@ -188,7 +206,7 @@ export class Test1Component implements OnInit {
       }
     }
     let set = new Set<string>();
-    for (let item of result){
+    for (let item of result) {
       set.add(item);
     }
     return set;

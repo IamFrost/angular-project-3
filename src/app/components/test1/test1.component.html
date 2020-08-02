@@ -19,10 +19,11 @@
     <p>Select User : </p>
     <select [(ngModel)]="currentSelectedUser" class="form-control" id="userSelect1"
       style="height: 3rem; width: max-content; margin-left: 33.5rem;" (change)="getSelectedUserAccess()">
-
-      <option>suman</option>
-      <option selected>rony</option>
-      <option>alex</option>
+      <option>
+       </option>
+      <option *ngFor="let user of userSet" [selected]="currentSelectedUser === user">
+        {{user}}
+       </option>
     </select>
   </div>
 
