@@ -40,13 +40,13 @@ export class UserAccessOneService {
   setCurrentPriviledge(privilege: string) {
     this.currentUserPriviledge = privilege;
   }
-  getCurrentPriviledge(){
+  getCurrentPriviledge() {
     return this.currentUserPriviledge;
   }
-  setCurrentUserJsonResponse(response: string[]){
+  setCurrentUserJsonResponse(response: string[]) {
     this.currentUserJsonResponse = response;
   }
-  getCurrentUserJsonResponse(){
+  getCurrentUserJsonResponse() {
     return this.currentUserJsonResponse;
   }
 
@@ -67,7 +67,9 @@ export class UserAccessOneService {
     return fetch(this.baseUrlUsersec);
   }
   GetOneUserAccess(userIdInput: string) {
-    return fetch(this.baseUrlUsersecWithSlash + userIdInput);
+  
+      return fetch(this.baseUrlUsersecWithSlash + userIdInput);
+
   }
   Delete_A_Purchase(userIdInput: string) {
     return fetch(this.baseUrlUsersecWithSlash + userIdInput, {

@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { UserAccessOneService } from "../../services/user-access-one/user-access-one.service";
 import { LoginService } from "../../services/login/login.service";
 import { FormsModule } from '@angular/forms';
-import { map } from 'rxjs/operators';
 import { Usersec } from 'src/app/models/usersec';
 
 @Component({
@@ -34,23 +33,21 @@ export class Test1Component implements OnInit {
     this.getOneUserAccess();
   }
 
-  isInFetchMap(accessValue: string) {
+  isInFetchMap(accessColumn: string,accessValue: string) {
+    let isFound = false;
     if (this.fetchMap.size !== 0) {
       for (let entry of this.fetchMap.entries()) {
         let accessRow = entry[1];
-        // not using has method of Set - using loop to search
-        for (let access of accessRow) {
-          if (access.toString().trim() === accessValue.toString().trim()) {
-            return true;
-          }
+        if(entry[0].toString().trim() === accessColumn &&  accessRow.has(accessValue)){
+          isFound = true;
         }
       }
     }
-    return false;
+    return isFound;
   }
 
   updateAccess(firstColumnValue: string, secondColumnValue: string) {
-    //console.log("this is user: " + this.getSelectedUser() + " this is firstColumnValue : " + firstColumnValue + " this is secondColumnValue: " + secondColumnValue);
+    console.log("this is user: " + this.getSelectedUser() + " this is firstColumnValue : " + firstColumnValue + " this is secondColumnValue: " + secondColumnValue);
 
     let entryFound = false;
     let searchflag = 0;
@@ -145,7 +142,7 @@ export class Test1Component implements OnInit {
   }
 
   async getOneUserAccess() {
-    if (this.getSelectedUser) {
+    if (this.getSelectedUser.toString().trim().length !== 0) {
       const response = await this.userAccessOneService.GetOneUserAccess(this.getSelectedUser());
       if (response) {
         const responseToJson = await response.json();
@@ -223,6 +220,8 @@ export class Test1Component implements OnInit {
   }
 
   getSelectedUserAccess() {
+    this.fetchMap.clear();
+    this.updateMap.clear();
     this.getOneUserAccess();
   }
 }

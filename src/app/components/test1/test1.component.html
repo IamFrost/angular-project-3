@@ -41,7 +41,7 @@
           <div class="form-check form-check-inline"
             *ngFor="let secondColumn of this.getSecondColumn(this.mapMenu,firstColumn); index as j;">
 
-            <div *ngIf="isInFetchMap(secondColumn); then thenBlock else elseBlock"></div>
+            <div *ngIf="isInFetchMap(firstColumn,secondColumn); then thenBlock else elseBlock"></div>
             <ng-template #thenBlock>
 
               <input name="checkbox{{i}}" id="checkbox{{i+'_'+j}}" type="checkbox" checked="checked"
