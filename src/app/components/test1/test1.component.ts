@@ -35,10 +35,11 @@ export class Test1Component implements OnInit {
     this.getOneUserAccess();
   }
 
-  isInFetchMap(accessValue: string, checkboxId?: string) {
+  isInFetchMap(accessValue: string) {
     if (this.fetchMap.size !== 0) {
       for (let entry of this.fetchMap.entries()) {
         let accessRow = entry[1];
+        // not using has method of Set - using loop to search
         for (let access of accessRow) {
           if (access.toString().trim() === accessValue.toString().trim()) {
             return true;
