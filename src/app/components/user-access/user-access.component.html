@@ -33,7 +33,7 @@
     <form>
 
       <div class="form-group row" *ngFor="let firstColumn of mapMenusFirstColumn; index as i;">
-        
+
         <label class="col-4">{{firstColumn}}</label>
         <div class="col-8">
 
@@ -44,15 +44,15 @@
             <ng-template #thenBlock>
 
               <input name="checkbox{{i}}" id="checkbox{{i+'_'+j}}" type="checkbox" checked="checked"
-                class="form-check-input" value={{secondColumn}}>
+                class="form-check-input" value={{secondColumn}} (click)="updateAccess(firstColumn,secondColumn)">
               <label for="checkbox_0" class="form-check-label">{{secondColumn}}</label>
 
             </ng-template>
 
             <ng-template #elseBlock>
 
-              <input name="checkbox{{i}}" id="checkbox{{i+'_'+j}}" type="checkbox"
-                class="form-check-input" value={{secondColumn}}>
+              <input name="checkbox{{i}}" id="checkbox{{i+'_'+j}}" type="checkbox" class="form-check-input"
+                value={{secondColumn}} (click)="updateAccess(firstColumn,secondColumn)">
               <label for="checkbox_0" class="form-check-label">{{secondColumn}}</label>
 
             </ng-template>

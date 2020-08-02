@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { UserAccessOneService } from "../../services/user-access-one/user-access-one.service";
-// import {AfterViewInit, ElementRef, ViewChild} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -15,17 +14,16 @@ export class UserAccessComponent implements OnInit {
   mapMenu = new Map();
   mapMenusFirstColumn = [];
   mapMenusSecondColumn = [];
-  fetchMap = new Map();
-  updateMap = new Map();
+  fetchMap = new Map<string, Set<string>>();
+  updateMap = new Map<string, Set<string>>();
 
-  getAllUsers(){
-    let getUsers = ['suman','rony','alex'];
+  getAllUsers() {
+    let getUsers = ['suman', 'rony', 'alex'];
     this.users = getUsers;
     this.currentSelectedUser = getUsers[0];
     return getUsers;
   }
 
-  // mapMenusFirstColumn = this.getFirstColumn(this.getMenu());
   constructor(private userAccessOneService: UserAccessOneService) {
   }
 
@@ -33,25 +31,17 @@ export class UserAccessComponent implements OnInit {
 
     this.getAllUsers();
     this.setFirstColumn();
-    // this.getOneUserAccess();
-    // this.getDistinctMainMenuValues();
-    //this.selectedHero();
-    // this.getMenu();
     this.setMap();
     this.getOneUserAccess();
-
-
   }
 
-  isInFetchMap(accessValue: string, checkboxId?: string) {
-    console.log(accessValue);
+  isInFetchMap(accessValue: string) {
     if (this.fetchMap.size !== 0) {
       for (let entry of this.fetchMap.entries()) {
         let accessRow = entry[1];
+        // not using has method of Set - using loop to search
         for (let access of accessRow) {
           if (access.toString().trim() === accessValue.toString().trim()) {
-            console.log("found");
-            // console.log(document.getElementById(checkboxId));
             return true;
           }
         }
@@ -60,93 +50,42 @@ export class UserAccessComponent implements OnInit {
     return false;
   }
 
-
-
-  // fetechAccess(entries: string[]) {
-  //   if (entries.length !== 0) {
-  //     for (let entry of entries) {
-  //       this.fetchMap.set(entry[0], entry[1]);
-  //     }
-  //   }
-
-  //   for (const entry of entries) {
-  //     console.log('this is fetched access :  entry[0] : ' + entry[0] + ' entry[1] : ' + entry[1]);
-  //   }
-  // }
-
-  updateAccess(accessKey: string, accessValue: string) {
-    console.log("this is user: " + this.getSelectedUser() + " this is key : " + accessKey + " this is value: " + accessValue);
+  updateAccess(firstColumnValue: string, secondColumnValue: string) {
+    //console.log("this is user: " + this.getSelectedUser() + " this is firstColumnValue : " + firstColumnValue + " this is secondColumnValue: " + secondColumnValue);
 
     let entryFound = false;
+    let searchflag = 0;
     for (let entry of this.updateMap.entries()) {
-      // console.log('this is entry : '+entry+ ' this is entry[0] : '+entry[0]+' this is entry[1] :'+entry[1]);
-      // console.log('this is access : ', [accessKey, accessValue]);
-
-      let x: string[] = entry[1];
-      let y: string[] = [accessKey, accessValue];
-
-      console.log('this is x : ' + x + ' this is y : ' + y);
-
-      if (x.toString().trim() === y.toString().trim()) {
-        entryFound = true;
-        this.updateMap.delete(entry[0]);
-        console.log('deleted : ')
-        if (this.updateMap.size === 0) {
-          console.log('this is update map : NO ENTRY');
+      if (entry[0].toString().trim() === firstColumnValue.toString().trim()) {
+        searchflag = 1;
+        if (entry[1].has(secondColumnValue.toString().trim())) {
+          entryFound = true;
+          searchflag = 2;
+          this.updateMap.delete(entry[0]);
+          console.log("deleted : ")
+          break;
         }
-        break;
+        if (searchflag === 1) {
+          entry[1].add(secondColumnValue);
+          this.updateMap.set(firstColumnValue, entry[1]);
+          console.log("added : ");
+          break;
+        }
       }
     }
-
-
-    if (entryFound === false) {
-      this.updateMap.set(this.updateMap.size.toString(), [accessKey, accessValue]);
-      console.log('added : ')
+    if (searchflag === 0 && entryFound === false) {
+      let secondColumnSet = new Set<string>();
+      secondColumnSet.add(secondColumnValue);
+      this.updateMap.set(firstColumnValue, secondColumnSet);
+      console.log("added : ");
     }
 
     //Iterate over map entries
     for (let entry of this.updateMap.entries()) {
-
-      console.log('this is update map : ', 'this is first index : ', entry[0], 'this is second index: ', entry[1]);
+      for (let key of entry[1].keys()) {
+        console.log('this is update map : ' + 'this is first index : ' + entry[0] + ' this is second index: ', key);
+      }
     }
-    // if(this.updateMap.){
-
-    // }
-    // let map = new Map();
-    // map = this.getMenu();
-
-    // let key;
-    // let value;
-    // //Iterate over map entries
-    // for (let entry of map.entries()) {
-    //   console.log('this is map : ', entry[0], entry[1]);
-    //   key = entry[0];
-    //   for (let newEntry of entry[1]) {
-    //     value = newEntry;
-    //     if (entry[1] === accessValue) {
-    //       break;
-    //     }
-    //   }
-    // }
-
-    // for (let entry of this.updateMap) {
-    //   let isAccessGiven = false;
-    //   let trackEntryIndex = 0;
-
-    //   // if (entry[0] === accessKey && entry[1] === accessValue) {
-    //   //   isAccessGiven = true;
-    //   //   this.updateMap.delete(trackEntryIndex);
-    //   //   break;
-    //   // }
-    //   // if (isAccessGiven === false) {
-
-    //   //   this.updateMap.set(this.getMapSize(this.updateMap), [accessKey, accessValue]);
-
-    //   // }
-    // }
-
-
-
   }
 
   trackByFn(i: number) {
@@ -196,137 +135,63 @@ export class UserAccessComponent implements OnInit {
       'Unit Entry']);
     map.set('RECEIVED GOODS', ['Purchase Chalan', 'Purchase Edit', 'Purchase Entry',
       'Purchase Product Search Details', 'Supplier Info Entry']);
-
-    //Iterate over map entries
-    for (let entry of map.entries()) {
-      console.log('this is map : ', entry[0], entry[1]);
-    }
     return map;
-  }
-
-  selectedHero() {
-    var elements = (<HTMLInputElement[]><any>document.getElementsByName("checkbox"));
-    for (let i = 0; i < elements.length; i++) {
-      if (elements[i].type == "checkbox") {
-        if (elements[i].checked) {
-          console.log("Checked", elements[i].checked);
-          //this.inEditMode = true;
-          //break;                      //<== Add this line in your for loop
-        }
-        else {
-          console.log("Unchecked", elements[i].checked);
-          //this.inEditMode = false;
-        }
-      }
-      else {
-        console.log('this is type : ' + elements[i].type);
-      }
-    }
   }
 
   async getOneUserAccess() {
     const response = await this.userAccessOneService.GetOneUserAccess(this.getSelectedUser());
     const responseToJson = await response.json();
     this.userAccessOneService.setJsonResponse(responseToJson);
-    //this.userAccessOneService.jsonResponse = responseToJson;
-    console.log('this is responseToJson : ' + responseToJson);
-    console.log('from data service : this is jsonresponse : ' + this.userAccessOneService.jsonResponse);
-    //console.log(userAccessOneService);
-    //this.getDistinctMainMenu(userAccessOneService, 'mainmenu');
-    //this.getDistinctMenuName(userAccessOneService, 'mainmenu', 'menuname', 'ACCOUNTS');
     this.fetchMap = this.getKeyValuePair(this.userAccessOneService.getJsonResponse(), this.getDistinctMainMenu(this.userAccessOneService.getJsonResponse(), 'mainmenu'), 'mainmenu', 'menuname');
-
-    for (const entry of this.fetchMap.entries()) {
-      console.log('this is fetch map :  entry[0] : ' + entry[0] + ' entry[1] : ' + entry[1]);
-    }
+    this.updateMap = this.fetchMap;
   }
 
   getKeyValuePair(data: string[], items: string[], column1Name: string, column2Name: string) {
 
-    let map = new Map();
-
-    // console.log('this is data from getKeyValuePair : ' + data);
-    // console.log('this is items from getKeyValuePair : ' + items);
+    let map = new Map<string, Set<string>>();
 
     items.forEach(element => {
       let mainmenu = element;
-      let menuname = [];
+      let menuname = new Set<string>();
       menuname = this.getDistinctMenuName(data, column1Name, column2Name, mainmenu);
-
-      let elements = [];
-      menuname.forEach(element => {
-        // console.log('this is main menu from getKeyValuePair : ' + mainmenu);
-        // console.log('this is menu name from getKeyValuePair : ' + element);
-        elements.push(element);
-      });
-      map.set(mainmenu, elements);
-
+      map.set(mainmenu, menuname);
     });
-
-    //Iterate over map keys
-    // for (let key of map.keys()) {
-    //   console.log("Map Keys= " + key);
-    // }
-
-    //Iterate over map values
-    // for (let value of map.values()) {
-    //   console.log("Map Values= " + value);
-    // }
-
-    //Iterate over map entries
-    // for (let entry of map.entries()) {
-    //   console.log('this is map : ', entry[0], entry[1]);
-    // }
 
     return map;
   }
 
   getDistinctMainMenu(items: string[], column1Name: string) {
-
     const lookup = {};
-    // const items = jsonResponse;
     const result = [];
-
-    // this.GetAllProducts();
-    // console.log(items);
     for (const item of items) {
       const currentVar = item[column1Name];
-
       if (!(currentVar in lookup)) {
         lookup[currentVar] = 1;
         result.push(currentVar);
       }
     }
-
-    // console.log('this is result - main menu : ' + result);
     return result;
-
   }
 
   getDistinctMenuName(items: string[], column1Name: string, column2Name: string, column1Value: string) {
 
     const lookup = {};
-    // const items = jsonResponse;
     const result = [];
-
-    // this.GetAllProducts();
-    // console.log(items);
     for (const item of items) {
       const currentVar = item[column1Name];
-      // console.log('debug here : '+currentVar)
       if (currentVar === column1Value) {
         const currentValue = item[column2Name];
-        // console.log('value here : '+currentValue);
         if (!(currentValue in lookup)) {
           lookup[currentValue] = 1;
           result.push(currentValue);
         }
       }
     }
-
-    // console.log('this is result 1: ' + result);
-    return result;
-
+    let set = new Set<string>();
+    for (let item of result) {
+      set.add(item);
+    }
+    return set;
   }
 
   getSelectedUser() {
