@@ -145,20 +145,25 @@ export class Test1Component implements OnInit {
   }
 
   async getOneUserAccess() {
-    const response = await this.userAccessOneService.GetOneUserAccess(this.getSelectedUser());
-    if(response){
-      const responseToJson = await response.json();
-      if(responseToJson){
-        this.userAccessOneService.setJsonResponse(responseToJson);
-        this.fetchMap = this.getKeyValuePair(this.userAccessOneService.getJsonResponse(), this.getDistinctMainMenu(this.userAccessOneService.getJsonResponse(), 'mainmenu'), 'mainmenu', 'menuname');
-        this.updateMap = this.fetchMap;
+    if (this.getSelectedUser) {
+      const response = await this.userAccessOneService.GetOneUserAccess(this.getSelectedUser());
+      if (response) {
+        const responseToJson = await response.json();
+        if (responseToJson) {
+          this.userAccessOneService.setJsonResponse(responseToJson);
+          this.fetchMap = this.getKeyValuePair(this.userAccessOneService.getJsonResponse(), this.getDistinctMainMenu(this.userAccessOneService.getJsonResponse(), 'mainmenu'), 'mainmenu', 'menuname');
+          this.updateMap = this.fetchMap;
+        }
+        else {
+          console.log("can't convert response to json : " + responseToJson);
+        }
       }
-      else{
-        console.log("can't convert response to json : "+responseToJson);
+      else {
+        console.log("response not found : " + response);
       }
     }
-    else{
-      console.log("response not found : "+response);
+    else {
+      // console.log("this user is undefined "+ this.getSelectedUser());
     }
   }
 
@@ -213,9 +218,8 @@ export class Test1Component implements OnInit {
   }
 
   getSelectedUser() {
-    console.log(this.currentSelectedUser);
+    console.log("current selected user: " + this.currentSelectedUser);
     return this.currentSelectedUser;
-
   }
 
   getSelectedUserAccess() {
