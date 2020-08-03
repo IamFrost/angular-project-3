@@ -86,9 +86,9 @@ export class Test2Component implements OnInit {
   isInMap(key: string, value: string): boolean {
     if (this.userAccessMap.has(key)) {
       for (let row of this.userAccessMap) {
-        if (row[0].toString().trim() === key) {
+        if (row[0].toString().trim() === key.toString().trim()) {
           for (let entry of row[1]) {
-            if (entry.toString().trim() === value) {
+            if (entry.toString().trim() === value.toString().trim()) {
               return true;
             }
           }
