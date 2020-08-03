@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Usersec } from '../../models/usersec';
-import { from, Observable, throwError } from 'rxjs';
-import { map, catchError } from 'rxjs/operators';
+import { Usersec } from '../../models/usersec/usersec';
+import {HttpClient, HttpHeaders } from '@angular/common/http'
 
+const headerOption = {
+  headers: new HttpHeaders({ 'Content-Type' : 'application/json' })
+};
 @Injectable({
   providedIn: 'root'
 })
@@ -63,11 +64,19 @@ export class UserAccessOneService {
   //       )
   //   }
 
+  getAllEmployee(){
+    return this.httpClient.get<Usersec[]>(this.baseUrlUsersec);
+  }
+
+  getOneEmployee(userIdInput: string){
+    return this.httpClient.get<Usersec[]>(this.baseUrlUsersecWithSlash + userIdInput);
+  }
+
   GetAllUserAccess() {
     return fetch(this.baseUrlUsersec);
   }
   GetOneUserAccess(userIdInput: string) {
-  
+
       return fetch(this.baseUrlUsersecWithSlash + userIdInput);
 
   }

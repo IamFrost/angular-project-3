@@ -6,6 +6,7 @@ import { SelectBranchFyearComponent } from '../app/components/select-branch-fyea
 import { Test1Component } from '../app/components/test1/test1.component';
 import { Menu1Component } from '../app/components/menu1/menu1.component';
 import { UserAccessComponent } from '../app/components/user-access/user-access.component';
+import { Test2Component } from './components/test2/test2.component';
 
 
 const routes: Routes = [
@@ -29,6 +30,10 @@ const routes: Routes = [
   {
     path:'test1',
     component: Test1Component
+  },
+  {
+    path:'test2',
+    component: Test2Component
   },
   {
     path:'menu1',

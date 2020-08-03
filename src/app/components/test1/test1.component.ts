@@ -40,6 +40,7 @@ export class Test1Component implements OnInit {
         let accessRow = entry[1];
         if(entry[0].toString().trim() === accessColumn &&  accessRow.has(accessValue)){
           isFound = true;
+          break;
         }
       }
     }
