@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Usersec } from '../../models/usersec/usersec';
+import { UsersecModel } from '../../models/usersec/usersec-model';
 import {HttpClient, HttpHeaders } from '@angular/common/http'
 
 const headerOption = {
@@ -65,11 +65,11 @@ export class UserAccessOneService {
   //   }
 
   getAllEmployee(){
-    return this.httpClient.get<Usersec[]>(this.baseUrlUsersec);
+    return this.httpClient.get<UsersecModel[]>(this.baseUrlUsersec);
   }
 
   getOneEmployee(userIdInput: string){
-    return this.httpClient.get<Usersec[]>(this.baseUrlUsersecWithSlash + userIdInput);
+    return this.httpClient.get<UsersecModel[]>(this.baseUrlUsersecWithSlash + userIdInput);
   }
 
   GetAllUserAccess() {

@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders } from '@angular/common/http';
-import { Usersec } from 'src/app/models/usersec';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { LoginsModel } from 'src/app/models/logins/logins-model';
 
 const headerOption = {
-  headers: new HttpHeaders({ 'Content-Type' : 'application/json' })
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
 
 @Injectable({
@@ -15,19 +15,16 @@ export class LoginService {
   host = 'localhost';
   port = '3000';
   subdomain = 'logins';
-  baseUrlUsersec = this.protocol + '://' + this.host + ':' + this.port + '/' + this.subdomain;
-  baseUrlUsersecWithSlash = this.protocol + '://' + this.host + ':' + this.port + '/' + this.subdomain + '/';
+  baseUrlLogins = this.protocol + '://' + this.host + ':' + this.port + '/' + this.subdomain;
+  baseUrlLoginsWithSlash = this.protocol + '://' + this.host + ':' + this.port + '/' + this.subdomain + '/';
 
-  constructor(private httpClient : HttpClient) { }
+  constructor(private httpClient: HttpClient) { }
 
   GetAllLogins() {
-    return fetch(this.baseUrlUsersec);
+    return fetch(this.baseUrlLogins);
   }
 
-  // getAllEmployee(){
-  //   return this.httpClient.get<Usersec[]>(this.baseUrlUsersec);
-  // }
-
-
-
+  getAllEmployee() {
+    return this.httpClient.get<LoginsModel[]>(this.baseUrlLogins);
+  }
 }

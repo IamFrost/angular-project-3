@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Usersec } from '../../models/usersec/usersec';
+import { UsersecModel } from '../../models/usersec/usersec-model';
+import { LoginsModel } from '../../models/logins/logins-model';
 import { UserAccessOneService } from "../../services/user-access-one/user-access-one.service";
+import { LoginService } from 'src/app/services/login/login.service';
 
 @Component({
   selector: 'app-test2',
@@ -9,15 +11,30 @@ import { UserAccessOneService } from "../../services/user-access-one/user-access
 })
 export class Test2Component implements OnInit {
 
+  logins: LoginsModel[] = null;
+  usersec: UsersecModel[] = null;
   currentSelectedUser = 'rony';
-  usersec: Usersec[] = null;
 
-  constructor(private userAccessOneService: UserAccessOneService) {
+
+  constructor(private userAccessOneService: UserAccessOneService,
+     private loginService: LoginService) {
 
   }
 
   ngOnInit(): void {
     // this.setOneUserAccess();
+  }
+
+  setAllLogin() {
+    this.loginService.getAllEmployee().subscribe(data => {
+      console.log('all', data);
+      if (data) {
+        this.logins = data;
+      }
+      else {
+        this.logins = null;
+      }
+    })
   }
 
   setOneUserAccess() {
