@@ -22,9 +22,10 @@
   <div style="text-align: center;">
     <p>Select User : </p>
     <select [(ngModel)]="currentSelectedUser" class="form-control"
-      style="height: 3rem; width: max-content; margin-left: 33.5rem;">
-
-      <option *ngFor="let login of logins">
+      style="height: 3rem; width: max-content; margin-left: 33.5rem;" (change)="setOneUserAccess()">
+      <option>
+      </option>
+      <option *ngFor="let login of logins" [selected]="currentSelectedUser === login.username">
         {{login.username}}
        </option>
 
@@ -33,23 +34,46 @@
 
 </div>
 
-<!-- <form>
-  <div class="form-group row">
-    <label class="col-4">Checkboxes</label>
-    <div class="col-8">
-      <div class="form-check form-check-inline">
-        <input name="checkbox" id="checkbox_0" type="checkbox" checked="checked" class="form-check-input" value="rabbit">
-        <label for="checkbox_0" class="form-check-label">Rabbit</label>
-      </div>
-      <div class="form-check form-check-inline">
-        <input name="checkbox" id="checkbox_1" type="checkbox" class="form-check-input" value="duck">
-        <label for="checkbox_1" class="form-check-label">Duck</label>
+<div style=" background-color: #e9ecef; margin-top: 2rem;" class="container">
+  <button class="btn btn-block disabled" style="background-color: #d2e6dc;">Set User Permission</button>
+  <hr>
+
+  <form>
+
+    <div class="form-group row" *ngFor="let firstColumn of menuMapFirstColumn; index as i;">
+
+      <label class="col-4">{{firstColumn}}</label>
+      <div class="col-8">
+
+        <div class="form-check form-check-inline"
+          *ngFor="let secondColumn of this.getSecondColumn(firstColumn); index as j;">
+
+          <div *ngIf="isInMap(firstColumn,secondColumn); then thenBlock else elseBlock"></div>
+          <ng-template #thenBlock>
+
+            <input name="checkbox{{i}}" id="checkbox{{i+'_'+j}}" type="checkbox" checked="checked"
+              class="form-check-input" value={{secondColumn}} (click)="updateUserAccess(firstColumn,secondColumn)">
+            <label for="checkbox_0" class="form-check-label">{{secondColumn}}</label>
+
+          </ng-template>
+
+          <ng-template #elseBlock>
+
+            <input name="checkbox{{i}}" id="checkbox{{i+'_'+j}}" type="checkbox"
+              class="form-check-input" value={{secondColumn}} (click)="updateUserAccess(firstColumn,secondColumn)">
+            <label for="checkbox_0" class="form-check-label">{{secondColumn}}</label>
+
+          </ng-template>
+
+        </div>
+
       </div>
     </div>
-  </div>
-  <div class="form-group row">
-    <div class="offset-4 col-8">
-      <button name="submit" type="submit" class="btn btn-primary">Submit</button>
+
+    <div class="form-group row">
+      <div class="offset-4 col-8">
+        <button name="submit" type="submit" class="btn btn-primary">Submit</button>
+      </div>
     </div>
-  </div>
-</form> -->
+  </form>
+</div>

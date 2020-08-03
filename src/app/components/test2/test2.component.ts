@@ -11,10 +11,13 @@ import { LoginService } from 'src/app/services/login/login.service';
 })
 export class Test2Component implements OnInit {
 
-  currentSelectedUser = 'rony';
+  currentSelectedUser: string = null;
 
   logins: LoginsModel[] = null;
   usersec: UsersecModel[] = null;
+
+  menuMapFirstColumn: string[] = [];
+  menuMapSecondColumn: string[] = [];
 
   menuMap = new Map<string, Set<string>>();
   userAccessMap = new Map<string, Set<string>>();
@@ -30,6 +33,83 @@ export class Test2Component implements OnInit {
     this.setMenu();
     this.setOneUserAccess();
     // this.setCurrentSelectedUserAccess();
+    this.getFirstColumn();
+  }
+
+
+  updateUserAccess(firstColumnValue: string, secondColumnValue: string) {
+    console.log("this is user: " + this.currentSelectedUser + " this is firstColumnValue : " + firstColumnValue + " this is secondColumnValue: " + secondColumnValue);
+
+    let entryFound = false;
+    let searchflag = 0;
+    for (let entry of this.userAccessMap.entries()) {
+      if (entry[0].toString().trim() === firstColumnValue.toString().trim()) {
+        searchflag = 1;
+        if (entry[1].has(secondColumnValue.toString().trim())) {
+          entryFound = true;
+          searchflag = 2;
+          this.userAccessMap.delete(entry[0]);
+          console.log("deleted : ")
+          break;
+        }
+        if (searchflag === 1) {
+          entry[1].add(secondColumnValue);
+          this.userAccessMap.set(firstColumnValue, entry[1]);
+          console.log("added : ");
+          break;
+        }
+      }
+    }
+    if (searchflag === 0 && entryFound === false) {
+      let secondColumnSet = new Set<string>();
+      secondColumnSet.add(secondColumnValue);
+      this.userAccessMap.set(firstColumnValue, secondColumnSet);
+      console.log("added : ");
+    }
+
+    //Iterate over map entries
+    for (let entry of this.userAccessMap.entries()) {
+      for (let key of entry[1].keys()) {
+        console.log('this is update map : ' + 'this is first index : ' + entry[0] + ' this is second index: ', key);
+      }
+    }
+  }
+
+
+
+
+
+  trackByFn(i: number) {
+    return i;
+  }
+
+
+
+
+
+
+
+  getFirstColumn() {
+    let firstColumn: string[] = [];
+    for (let key of this.menuMap.keys()) {
+      firstColumn.push(key);
+    }
+    this.menuMapFirstColumn = firstColumn;
+    return firstColumn;
+  }
+
+  getSecondColumn(firstColumnValue: string) {
+    let secondColumn: string[] = [];
+    for (let row of this.menuMap.entries()) {
+      if (row[0].toString().trim() === firstColumnValue.toString().trim()) {
+        for (let entry of row[1]) {
+          secondColumn.push(entry);
+        }
+        break;
+      }
+    }
+    this.menuMapSecondColumn = secondColumn;
+    return secondColumn;
   }
 
 
@@ -58,6 +138,7 @@ export class Test2Component implements OnInit {
       }
     }
   }
+
   deleteFromMap(key: string, value: string) {
     if (this.userAccessMap.has(key)) {
       for (let row of this.userAccessMap) {
@@ -65,12 +146,12 @@ export class Test2Component implements OnInit {
           for (let entry of row[1]) {
 
             if (entry.toString().trim() === value.toString().trim()) {
-              if(row[1].size === 1){
+              if (row[1].size === 1) {
                 this.userAccessMap.delete(key);
               }
-              else{
+              else {
                 let menuNameSet = new Set<string>();
-                for(let entry of row[1]){
+                for (let entry of row[1]) {
                   menuNameSet.add(entry);
                 }
                 menuNameSet.delete(value);
@@ -83,14 +164,13 @@ export class Test2Component implements OnInit {
       }
     }
   }
+
   isInMap(key: string, value: string): boolean {
-    if (this.userAccessMap.has(key)) {
-      for (let row of this.userAccessMap) {
-        if (row[0].toString().trim() === key.toString().trim()) {
-          for (let entry of row[1]) {
-            if (entry.toString().trim() === value.toString().trim()) {
-              return true;
-            }
+    if(this.userAccessMap.size !== 0){
+      if (this.userAccessMap.has(key)) {
+        for (let row of this.userAccessMap) {
+          if (row[0].toString().trim() === key.toString().trim() && row[1].has(value)) {
+            return true;
           }
         }
       }
@@ -108,11 +188,11 @@ export class Test2Component implements OnInit {
       for (let row of this.usersec) {
         this.addInMap(row.mainmenu, row.menuname);
       }
-      console.log("this is model: "+this.usersec);
-      console.log("this is map: "+this.userAccessMap);
-      for(let row of this.userAccessMap){
-        for(let entry of row[1]){
-          console.log("entry[0] : "+row[0]+" entry[1] : "+entry);
+      console.log("this is model: " + this.usersec);
+      console.log("this is map: " + this.userAccessMap);
+      for (let row of this.userAccessMap) {
+        for (let entry of row[1]) {
+          console.log("entry[0] : " + row[0] + " entry[1] : " + entry);
         }
       }
     }
@@ -127,8 +207,9 @@ export class Test2Component implements OnInit {
 
 
   setOneUserAccess() {
-    this.userAccessOneService.getOneEmployee(this.currentSelectedUser).subscribe(data => {
-      //console.log('one', data);
+    this.userAccessMap.clear();
+    this.userAccessOneService.getOneEmployee(this.getCurrentSelectedUser()).subscribe(data => {
+      console.log('one', data);
       if (data) {
         this.usersec = data;
         this.setCurrentSelectedUserAccess();
@@ -185,6 +266,14 @@ export class Test2Component implements OnInit {
     else {
       this.menuMap = null;
     }
+  }
+
+
+
+
+
+  getCurrentSelectedUser(): string{
+    return this.currentSelectedUser;
   }
 
 

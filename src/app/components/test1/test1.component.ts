@@ -26,8 +26,8 @@ export class Test1Component implements OnInit {
 
   ngOnInit(): void {
     this.getAllUsers();
-    this.setFirstColumn();
     this.setMap();
+    this.setFirstColumn();
     this.getOneUserAccess();
   }
 
@@ -130,13 +130,6 @@ export class Test1Component implements OnInit {
     map.set('RECEIVED GOODS', ['Purchase Chalan', 'Purchase Edit', 'Purchase Entry',
       'Purchase Product Search Details', 'Supplier Info Entry']);
     return map;
-
-
-    this.mapMenu = new Map([
-      ["ADMIN", ["Create User", "User Access"]],
-      ["ACCOUNTS", ["Accounting head entry", "Buyer Ledger"]],
-      ["SALE", ["Buyer", "Buyer Ledger"]]
-    ]);
   }
 
   async getAllUsers() {
