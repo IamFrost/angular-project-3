@@ -21,7 +21,7 @@
 
   <div style="text-align: center;">
     <p>Select User : </p>
-    <select [(ngModel)]="currentSelectedUser" class="form-control" id="userSelect1"
+    <select [(ngModel)]="currentSelectedUser" class="form-control"
       style="height: 3rem; width: max-content; margin-left: 33.5rem;">
 
       <option *ngFor="let login of logins">
@@ -32,3 +32,24 @@
   </div>
 
 </div>
+
+<!-- <form>
+  <div class="form-group row">
+    <label class="col-4">Checkboxes</label>
+    <div class="col-8">
+      <div class="form-check form-check-inline">
+        <input name="checkbox" id="checkbox_0" type="checkbox" checked="checked" class="form-check-input" value="rabbit">
+        <label for="checkbox_0" class="form-check-label">Rabbit</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input name="checkbox" id="checkbox_1" type="checkbox" class="form-check-input" value="duck">
+        <label for="checkbox_1" class="form-check-label">Duck</label>
+      </div>
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="offset-4 col-8">
+      <button name="submit" type="submit" class="btn btn-primary">Submit</button>
+    </div>
+  </div>
+</form> -->

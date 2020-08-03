@@ -19,7 +19,6 @@ export class Test1Component implements OnInit {
   userSet = new Set<string>();
   userMap = new Map<string, Set<string>>();
   fetchMap = new Map<string, Set<string>>();
-  updateMap = new Map<string, Set<string>>();
 
   constructor(private userAccessOneService: UserAccessOneService,
     private loginService: LoginService) {
@@ -51,19 +50,19 @@ export class Test1Component implements OnInit {
 
     let entryFound = false;
     let searchflag = 0;
-    for (let entry of this.updateMap.entries()) {
+    for (let entry of this.fetchMap.entries()) {
       if (entry[0].toString().trim() === firstColumnValue.toString().trim()) {
         searchflag = 1;
         if (entry[1].has(secondColumnValue.toString().trim())) {
           entryFound = true;
           searchflag = 2;
-          this.updateMap.delete(entry[0]);
+          this.fetchMap.delete(entry[0]);
           console.log("deleted : ")
           break;
         }
         if (searchflag === 1) {
           entry[1].add(secondColumnValue);
-          this.updateMap.set(firstColumnValue, entry[1]);
+          this.fetchMap.set(firstColumnValue, entry[1]);
           console.log("added : ");
           break;
         }
@@ -72,12 +71,12 @@ export class Test1Component implements OnInit {
     if (searchflag === 0 && entryFound === false) {
       let secondColumnSet = new Set<string>();
       secondColumnSet.add(secondColumnValue);
-      this.updateMap.set(firstColumnValue, secondColumnSet);
+      this.fetchMap.set(firstColumnValue, secondColumnSet);
       console.log("added : ");
     }
 
     //Iterate over map entries
-    for (let entry of this.updateMap.entries()) {
+    for (let entry of this.fetchMap.entries()) {
       for (let key of entry[1].keys()) {
         console.log('this is update map : ' + 'this is first index : ' + entry[0] + ' this is second index: ', key);
       }
@@ -131,6 +130,13 @@ export class Test1Component implements OnInit {
     map.set('RECEIVED GOODS', ['Purchase Chalan', 'Purchase Edit', 'Purchase Entry',
       'Purchase Product Search Details', 'Supplier Info Entry']);
     return map;
+
+
+    this.mapMenu = new Map([
+      ["ADMIN", ["Create User", "User Access"]],
+      ["ACCOUNTS", ["Accounting head entry", "Buyer Ledger"]],
+      ["SALE", ["Buyer", "Buyer Ledger"]]
+    ]);
   }
 
   async getAllUsers() {
@@ -149,7 +155,6 @@ export class Test1Component implements OnInit {
         if (responseToJson) {
           this.userAccessOneService.setJsonResponse(responseToJson);
           this.fetchMap = this.getKeyValuePair(this.userAccessOneService.getJsonResponse(), this.getDistinctMainMenu(this.userAccessOneService.getJsonResponse(), 'mainmenu'), 'mainmenu', 'menuname');
-          this.updateMap = this.fetchMap;
         }
         else {
           console.log("can't convert response to json : " + responseToJson);
@@ -221,7 +226,6 @@ export class Test1Component implements OnInit {
 
   getSelectedUserAccess() {
     this.fetchMap.clear();
-    this.updateMap.clear();
     this.getOneUserAccess();
   }
 }
