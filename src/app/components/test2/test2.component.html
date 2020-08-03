@@ -24,9 +24,9 @@
     <select [(ngModel)]="currentSelectedUser" class="form-control" id="userSelect1"
       style="height: 3rem; width: max-content; margin-left: 33.5rem;">
 
-      <option>suman</option>
-      <option>rony</option>
-      <option>alex</option>
+      <option *ngFor="let login of logins">
+        {{login.username}}
+       </option>
 
     </select>
   </div>

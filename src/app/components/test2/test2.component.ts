@@ -23,6 +23,7 @@ export class Test2Component implements OnInit {
 
   ngOnInit(): void {
     // this.setOneUserAccess();
+    this.setAllLogin();
   }
 
   setAllLogin() {

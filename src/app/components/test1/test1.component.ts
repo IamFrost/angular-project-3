@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { UserAccessOneService } from "../../services/user-access-one/user-access-one.service";
 import { LoginService } from "../../services/login/login.service";
 import { FormsModule } from '@angular/forms';
-import { Usersec } from 'src/app/models/usersec';
 
 @Component({
   selector: 'app-test1',
