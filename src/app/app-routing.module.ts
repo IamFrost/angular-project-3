@@ -13,7 +13,7 @@ import { Test3Component } from './components/test3/test3.component';
 const routes: Routes = [
   {
     path:'',
-    redirectTo: 'test2',
+    redirectTo: 'test3',
     pathMatch: 'full'
   },
   {
