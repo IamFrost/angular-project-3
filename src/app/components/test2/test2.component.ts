@@ -29,7 +29,7 @@ export class Test2Component implements OnInit {
     this.setAllLogin();
     this.setMenu();
     this.setOneUserAccess();
-    this.setCurrentSelectedUserAccess();
+    // this.setCurrentSelectedUserAccess();
   }
 
 
@@ -108,7 +108,13 @@ export class Test2Component implements OnInit {
       for (let row of this.usersec) {
         this.addInMap(row.mainmenu, row.menuname);
       }
-      console.log(this.userAccessMap);
+      console.log("this is model: "+this.usersec);
+      console.log("this is map: "+this.userAccessMap);
+      for(let row of this.userAccessMap){
+        for(let entry of row[1]){
+          console.log("entry[0] : "+row[0]+" entry[1] : "+entry);
+        }
+      }
     }
     else {
       this.userAccessMap = null;
@@ -125,6 +131,7 @@ export class Test2Component implements OnInit {
       //console.log('one', data);
       if (data) {
         this.usersec = data;
+        this.setCurrentSelectedUserAccess();
       }
       else {
         this.usersec = null;
