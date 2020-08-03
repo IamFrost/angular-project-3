@@ -7,6 +7,7 @@ import { Test1Component } from '../app/components/test1/test1.component';
 import { Menu1Component } from '../app/components/menu1/menu1.component';
 import { UserAccessComponent } from '../app/components/user-access/user-access.component';
 import { Test2Component } from './components/test2/test2.component';
+import { Test3Component } from './components/test3/test3.component';
 
 
 const routes: Routes = [
@@ -34,6 +35,10 @@ const routes: Routes = [
   {
     path:'test2',
     component: Test2Component
+  },
+  {
+    path:'test3',
+    component: Test3Component
   },
   {
     path:'menu1',
