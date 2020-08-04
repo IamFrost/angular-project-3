@@ -20,11 +20,7 @@ export class LoginService {
 
   constructor(private httpClient: HttpClient) { }
 
-  GetAllLogins() {
-    return fetch(this.baseUrlLogins);
-  }
-
-  getAllEmployee() {
+  getAllLogin() {
     return this.httpClient.get<LoginsModel[]>(this.baseUrlLogins);
   }
 }

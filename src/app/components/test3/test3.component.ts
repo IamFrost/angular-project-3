@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
+import { UsersecModel } from '../../models/usersec/usersec-model';
+import { LoginsModel } from '../../models/logins/logins-model';
+import { UserAccessOneService } from "../../services/user-access-one/user-access-one.service";
+import { LoginService } from 'src/app/services/login/login.service';
 
 @Component({
   selector: 'app-test3',
@@ -8,10 +12,25 @@ import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 })
 export class Test3Component implements OnInit {
 
+  currentSelectedUser: string = null;
+
+  logins: LoginsModel[] = null;
+  usersec: UsersecModel[] = null;
+
+  menuMapFirstColumn: string[] = [];
+  menuMapSecondColumn: string[] = [];
+
+  menuMap = new Map<string, Set<string>>();
+  userAccessMap = new Map<string, Set<string>>();
+
   dynamicForm: FormGroup;
   submitted = false;
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder,
+    private userAccessOneService: UserAccessOneService,
+    private loginService: LoginService) {
+
+  }
 
   ngOnInit() {
     this.dynamicForm = this.formBuilder.group({
@@ -52,16 +71,16 @@ export class Test3Component implements OnInit {
     alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.dynamicForm.value, null, 4));
   }
 
-  onReset() {
-    // reset whole form back to initial state
-    this.submitted = false;
-    this.dynamicForm.reset();
-    this.t.clear();
+  setAllLogin() {
+    this.loginService.getAllLogin().subscribe(data => {
+      //console.log('all', data);
+      if (data) {
+        this.logins = data;
+      }
+      else {
+        this.logins = null;
+      }
+    })
   }
 
-  onClear() {
-    // clear errors and reset ticket fields
-    this.submitted = false;
-    this.t.reset();
-  }
 }
