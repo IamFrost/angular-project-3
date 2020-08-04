@@ -208,7 +208,7 @@ export class Test2Component implements OnInit {
 
   setOneUserAccess() {
     this.userAccessMap.clear();
-    this.userAccessOneService.getOneEmployee(this.getCurrentSelectedUser()).subscribe(data => {
+    this.userAccessOneService.getOneUserAccess(this.getCurrentSelectedUser()).subscribe(data => {
       console.log('one', data);
       if (data) {
         this.usersec = data;
@@ -282,7 +282,7 @@ export class Test2Component implements OnInit {
 
 
   setAllLogin() {
-    this.loginService.getAllEmployee().subscribe(data => {
+    this.loginService.getAllLogin().subscribe(data => {
       //console.log('all', data);
       if (data) {
         this.logins = data;

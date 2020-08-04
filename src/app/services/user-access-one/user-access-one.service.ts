@@ -64,39 +64,31 @@ export class UserAccessOneService {
   //       )
   //   }
 
-  getAllEmployee(){
+  getAllUserAccess(){
     return this.httpClient.get<UsersecModel[]>(this.baseUrlUsersec);
   }
 
-  getOneEmployee(userIdInput: string){
+  getOneUserAccess(userIdInput: string){
     return this.httpClient.get<UsersecModel[]>(this.baseUrlUsersecWithSlash + userIdInput);
   }
 
-  GetAllUserAccess() {
-    return fetch(this.baseUrlUsersec);
-  }
-  GetOneUserAccess(userIdInput: string) {
-
-      return fetch(this.baseUrlUsersecWithSlash + userIdInput);
-
-  }
-  Delete_A_Purchase(userIdInput: string) {
-    return fetch(this.baseUrlUsersecWithSlash + userIdInput, {
-      method: 'DELETE'
-    });
-  }
-  Create_A_Purchase(userIdInput: string, menuNameInput: string, mainMenuInput: string) {
-    console.log('from Create of user-access-one.service.ts : ' + userIdInput + ' ' + menuNameInput + ' ' + mainMenuInput);
-    return fetch(this.baseUrlUsersec, {
-      method: 'POST',
-      body: JSON.stringify({
-        userid: userIdInput.toString(),
-        menuname: menuNameInput.toString(),
-        mainmenu: mainMenuInput.toString()
-      }),
-      headers: { 'Content-Type': 'application/json' }
-    });
-  }
+  // Delete_A_Purchase(userIdInput: string) {
+  //   return fetch(this.baseUrlUsersecWithSlash + userIdInput, {
+  //     method: 'DELETE'
+  //   });
+  // }
+  // Create_A_Purchase(userIdInput: string, menuNameInput: string, mainMenuInput: string) {
+  //   console.log('from Create of user-access-one.service.ts : ' + userIdInput + ' ' + menuNameInput + ' ' + mainMenuInput);
+  //   return fetch(this.baseUrlUsersec, {
+  //     method: 'POST',
+  //     body: JSON.stringify({
+  //       userid: userIdInput.toString(),
+  //       menuname: menuNameInput.toString(),
+  //       mainmenu: mainMenuInput.toString()
+  //     }),
+  //     headers: { 'Content-Type': 'application/json' }
+  //   });
+  // }
 
   // Update_A_Purchase(userIdInput: string, menuNameInput: string, mainMenuInput: string) {
   //   console.log('from Update of user-access-one.service.ts : ' + userIdInput + ' ' + menuNameInput + ' ' + mainMenuInput);

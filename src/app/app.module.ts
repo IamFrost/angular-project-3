@@ -10,7 +10,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LoginComponent } from '../app/components/login/login.component';
 import { SignupComponent } from '../app/components/signup/signup.component';
 import { SelectBranchFyearComponent } from '../app/components/select-branch-fyear/select-branch-fyear.component';
-import { Test1Component } from '../app/components/test1/test1.component';
 import { Menu1Component } from '../app/components/menu1/menu1.component';
 import { UserAccessComponent } from '../app/components/user-access/user-access.component';
 import { Test2Component } from './components/test2/test2.component';
@@ -22,7 +21,6 @@ import { Test3Component } from './components/test3/test3.component';
     LoginComponent,
     SignupComponent,
     SelectBranchFyearComponent,
-    Test1Component,
     Menu1Component,
     UserAccessComponent,
     Test2Component,
