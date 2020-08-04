@@ -23,7 +23,7 @@ export class Test3Component implements OnInit {
   menuMap = new Map<string, Set<string>>();
   userAccessMap = new Map<string, Set<string>>();
 
-  dynamicForm: FormGroup;
+  userAccessForm: FormGroup;
   submitted = false;
 
   constructor(private formBuilder: FormBuilder,
@@ -34,42 +34,28 @@ export class Test3Component implements OnInit {
 
   ngOnInit() {
     this.setAllLogin();
-    this.dynamicForm = this.formBuilder.group({
-      numberOfTickets: ['', Validators.required],
-      tickets: new FormArray([])
+    this.userAccessForm = this.formBuilder.group({
+      userSelect: ['', Validators.required]
     });
   }
 
   // convenience getters for easy access to form fields
-  get f() { return this.dynamicForm.controls; }
-  get t() { return this.f.tickets as FormArray; }
+  get f() { return this.userAccessForm.controls; }
 
   onChangeTickets(e) {
-    const numberOfTickets = e.target.value || 0;
-    if (this.t.length < numberOfTickets) {
-      for (let i = this.t.length; i < numberOfTickets; i++) {
-        this.t.push(this.formBuilder.group({
-          name: ['', Validators.required],
-          email: ['', [Validators.required, Validators.email]]
-        }));
-      }
-    } else {
-      for (let i = this.t.length; i >= numberOfTickets; i--) {
-        this.t.removeAt(i);
-      }
-    }
+
   }
 
   onSubmit() {
     this.submitted = true;
 
     // stop here if form is invalid
-    if (this.dynamicForm.invalid) {
+    if (this.userAccessForm.invalid) {
       return;
     }
 
     // display form values on success
-    alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.dynamicForm.value, null, 4));
+    alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.userAccessForm.value, null, 4));
   }
 
   setAllLogin() {
