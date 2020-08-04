@@ -19,8 +19,7 @@
     <p>Select User : </p>
     <select [(ngModel)]="currentSelectedUser" class="form-control"
       style="height: 3rem; width: max-content; margin-left: 33.5rem;" (change)="setOneUserAccess()">
-      <option>
-      </option>
+      <option value=""></option>
       <option *ngFor="let login of logins" [selected]="currentSelectedUser === login.username">
         {{login.username}}
       </option>

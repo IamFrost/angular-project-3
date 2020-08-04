@@ -33,6 +33,7 @@ export class Test3Component implements OnInit {
   }
 
   ngOnInit() {
+    this.setAllLogin();
     this.dynamicForm = this.formBuilder.group({
       numberOfTickets: ['', Validators.required],
       tickets: new FormArray([])
@@ -73,7 +74,6 @@ export class Test3Component implements OnInit {
 
   setAllLogin() {
     this.loginService.getAllLogin().subscribe(data => {
-      //console.log('all', data);
       if (data) {
         this.logins = data;
       }
