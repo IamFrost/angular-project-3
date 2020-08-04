@@ -47,25 +47,25 @@
           *ngFor="let secondColumn of this.getSecondColumn(firstColumn); index as j;">
 
           <div *ngIf="isInMap(firstColumn,secondColumn); then thenBlock else elseBlock"></div>
-          <ng-template #thenBlock> -->
+          <ng-template #thenBlock>
 
-<!-- <input name="checkbox{{i}}" id="checkbox{{i+'_'+j}}" type="checkbox" checked="checked"
+            <input name="checkbox{{i}}" id="checkbox{{i+'_'+j}}" type="checkbox" checked="checked"
               class="form-check-input" value={{secondColumn}} (click)="updateUserAccess(firstColumn,secondColumn)">
-            <label for="checkbox_0" class="form-check-label">{{secondColumn}}</label> -->
+            <label for="checkbox_0" class="form-check-label">{{secondColumn}}</label>
 
-<!-- <input name="checkbox{{i}}" id="checkbox{{i+'_'+j}}" type="checkbox" checked="checked"
+            <input name="checkbox{{i}}" id="checkbox{{i+'_'+j}}" type="checkbox" checked="checked"
               class="form-check-input" value={{secondColumn}}>
-            <label for="checkbox_0" class="form-check-label">{{secondColumn}}</label> -->
+            <label for="checkbox_0" class="form-check-label">{{secondColumn}}</label>
 
-<!-- </ng-template>
+          </ng-template>
 
-          <ng-template #elseBlock> -->
+          <ng-template #elseBlock>
 
-<!-- <input name="checkbox{{i}}" id="checkbox{{i+'_'+j}}" type="checkbox" class="form-check-input"
+            <input name="checkbox{{i}}" id="checkbox{{i+'_'+j}}" type="checkbox" class="form-check-input"
               value={{secondColumn}} (click)="updateUserAccess(firstColumn,secondColumn)">
-            <label for="checkbox_0" class="form-check-label">{{secondColumn}}</label> -->
+            <label for="checkbox_0" class="form-check-label">{{secondColumn}}</label>
 
-<!-- <input name="checkbox{{i}}" id="checkbox{{i+'_'+j}}" type="checkbox" class="form-check-input"
+            <input name="checkbox{{i}}" id="checkbox{{i+'_'+j}}" type="checkbox" class="form-check-input"
               value={{secondColumn}}>
             <label for="checkbox_0" class="form-check-label">{{secondColumn}}</label>
 

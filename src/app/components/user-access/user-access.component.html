@@ -1,3 +1,9 @@
+<div class="sidebar" style="text-align: center">
+  <img style="margin-top: 2rem;" src="../../assets/images/logos/satcomLogo1.PNG" alt="SatcomLogo" class="img-thumbnail">
+  <p style="color: #fff;">Dhanmondi iCenter</p>
+  <p style="color: #fff;">Financial year 2020-2021</p>
+</div>
+
 <div class="topnav" style="margin-left: 12.5rem;">
   <a class="active" href="#home">Home</a>
   <a href="#news">News</a>
@@ -5,68 +11,74 @@
   <a href="#about">About</a>
 </div>
 
+<form [formGroup]="userAccessForm" (ngSubmit)="onSubmit()" style="margin-left: 12.5rem;">
+  <div class="card m-3">
+    <h5 class="card-header" style="padding-top: 2rem; padding-bottom: 2rem;"></h5>
+    <div class="card-body border-bottom">
+      <div class="form-row mx-auto d-block">
+        <div class="form-group">
+          <label>Select User</label>
+          <select [(ngModel)]="currentSelectedUser" [ngModelOptions]="{standalone: true}" class="form-control"
+            (change)="setOneUserAccess()"
+            [ngClass]="{ 'is-invalid': submitted && userAccessFormControl.userSelect.errors }">
+            <option value=""></option>
+            <option *ngFor="let login of logins" [selected]="currentSelectedUser === login.username"
+              value={{login.username}}>
+              {{login.username}}
+            </option>
+          </select>
+          <!-- <div *ngIf="submitted && userAccessFormControl.userSelect.errors" class="invalid-feedback">
+                <div *ngIf="userAccessFormControl.userSelect.errors.required">User selection required</div>
+              </div> -->
+        </div>
+        <div class="form-group">
+          <button class="btn btn-block" style="background-color: #d2e6dc;" disabled>Set User Permission</button>
+          <hr>
+        </div>
+        <div class="form-group row" *ngFor="let firstColumn of menuMapFirstColumn; index as i">
+          <label class="col-4">{{firstColumn}}</label>
+          <div class="col-8">
+            <div class="form-check form-check-inline"
+              *ngFor="let secondColumn of this.getSecondColumn(firstColumn); index as j;">
 
-<div class="sidenav col-md-2" style="text-align: center;">
-  <img src="../../assets/images/logos/satcomLogo1.PNG" alt="SatcomLogo" class="img-thumbnail">
-  <p style="color: #fff;">Dhanmondi iCenter</p>
-  <p style="color: #fff;">Financial year 2020-2021</p>
+              <div *ngIf="isInMap(firstColumn,secondColumn); then thenBlock else elseBlock"></div>
 
-</div>
+              <ng-template #thenBlock>
 
-<div style="margin-left: 12.5rem;">
+                <input name="checkbox{{i}}" id="checkbox{{i+'_'+j}}" type="checkbox" checked="checked"
+                  class="form-check-input" value={{secondColumn}} (click)="updateUserAccess(firstColumn,secondColumn)">
+                <label for="checkbox_0" class="form-check-label">{{secondColumn}}</label>
 
-  <div style="text-align: center;">
-    <p>Select User : </p>
-    <select [(ngModel)]="currentSelectedUser" class="form-control" id="userSelect1"
-      style="height: 3rem; width: max-content; margin-left: 33.5rem;" (change)="getSelectedUserAccess()">
+                <!-- <input name="checkbox{{i}}" id="checkbox{{i+'_'+j}}" type="checkbox" checked="checked"
+                        class="form-check-input" value={{secondColumn}}>
+                      <label for="checkbox_0" class="form-check-label">{{secondColumn}}</label> -->
 
-      <option>suman</option>
-      <option selected>rony</option>
-      <option>alex</option>
-    </select>
-  </div>
+              </ng-template>
 
-  <div style=" background-color: #e9ecef; margin-top: 2rem;" class="container">
-    <button class="btn btn-block disabled" style="background-color: #d2e6dc;">Set User Permission</button>
-    <hr>
+              <ng-template #elseBlock>
 
-    <form>
+                <input name="checkbox{{i}}" id="checkbox{{i+'_'+j}}" type="checkbox" class="form-check-input"
+                  value={{secondColumn}} (click)="updateUserAccess(firstColumn,secondColumn)">
+                <label for="checkbox_0" class="form-check-label">{{secondColumn}}</label>
 
-      <div class="form-group row" *ngFor="let firstColumn of mapMenusFirstColumn; index as i;">
+                <!-- <input name="checkbox{{i}}" id="checkbox{{i+'_'+j}}" type="checkbox" class="form-check-input"
+                        value={{secondColumn}}>
+                      <label for="checkbox_0" class="form-check-label">{{secondColumn}}</label> -->
 
-        <label class="col-4">{{firstColumn}}</label>
-        <div class="col-8">
+              </ng-template>
 
-          <div class="form-check form-check-inline"
-            *ngFor="let secondColumn of this.getSecondColumn(this.mapMenu,firstColumn); index as j;">
-
-            <div *ngIf="isInFetchMap(secondColumn); then thenBlock else elseBlock"></div>
-            <ng-template #thenBlock>
-
-              <input name="checkbox{{i}}" id="checkbox{{i+'_'+j}}" type="checkbox" checked="checked"
-                class="form-check-input" value={{secondColumn}} (click)="updateAccess(firstColumn,secondColumn)">
-              <label for="checkbox_0" class="form-check-label">{{secondColumn}}</label>
-
-            </ng-template>
-
-            <ng-template #elseBlock>
-
-              <input name="checkbox{{i}}" id="checkbox{{i+'_'+j}}" type="checkbox" class="form-check-input"
-                value={{secondColumn}} (click)="updateAccess(firstColumn,secondColumn)">
-              <label for="checkbox_0" class="form-check-label">{{secondColumn}}</label>
-
-            </ng-template>
-
+            </div>
           </div>
-
+        </div>
+        <div class="form-group row">
+          <div class="offset-4 col-8">
+            <button name="submit" type="submit" class="btn btn-primary">Submit</button>
+          </div>
         </div>
       </div>
+    </div>
+    <div class="card-footer text-center border-top-0" style="padding-top: 2rem; padding-bottom: 2rem;">
 
-      <div class="form-group row">
-        <div class="offset-4 col-8">
-          <button name="submit" type="submit" class="btn btn-primary">Submit</button>
-        </div>
-      </div>
-    </form>
+    </div>
   </div>
-</div>
+</form>
