@@ -139,11 +139,11 @@ export class UserAccessComponent implements OnInit {
   }
 
   async getOneUserAccess() {
-    const response = await this.userAccessOneService.GetOneUserAccess(this.getSelectedUser());
-    const responseToJson = await response.json();
-    this.userAccessOneService.setJsonResponse(responseToJson);
-    this.fetchMap = this.getKeyValuePair(this.userAccessOneService.getJsonResponse(), this.getDistinctMainMenu(this.userAccessOneService.getJsonResponse(), 'mainmenu'), 'mainmenu', 'menuname');
-    this.updateMap = this.fetchMap;
+    const response = await this.userAccessOneService.getOneUserAccess(this.getSelectedUser());
+    // const responseToJson = await response.json();
+    // this.userAccessOneService.setJsonResponse(responseToJson);
+    // this.fetchMap = this.getKeyValuePair(this.userAccessOneService.getJsonResponse(), this.getDistinctMainMenu(this.userAccessOneService.getJsonResponse(), 'mainmenu'), 'mainmenu', 'menuname');
+    // this.updateMap = this.fetchMap;
   }
 
   getKeyValuePair(data: string[], items: string[], column1Name: string, column2Name: string) {
