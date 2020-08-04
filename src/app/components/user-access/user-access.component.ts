@@ -84,41 +84,41 @@ export class UserAccessComponent implements OnInit {
   }
 
   updateUserAccess(firstColumnValue: string, secondColumnValue: string) {
-    console.log("this is user: " + this.currentSelectedUser + " this is firstColumnValue : " + firstColumnValue + " this is secondColumnValue: " + secondColumnValue);
+    // console.log("this is user: " + this.currentSelectedUser + " this is firstColumnValue : " + firstColumnValue + " this is secondColumnValue: " + secondColumnValue);
 
-    let entryFound = false;
-    let searchflag = 0;
-    for (let entry of this.userAccessMap.entries()) {
-      if (entry[0].toString().trim() === firstColumnValue.toString().trim()) {
-        searchflag = 1;
-        if (entry[1].has(secondColumnValue.toString().trim())) {
-          entryFound = true;
-          searchflag = 2;
-          this.userAccessMap.delete(entry[0]);
-          console.log("deleted : ")
-          break;
-        }
-        if (searchflag === 1) {
-          entry[1].add(secondColumnValue);
-          this.userAccessMap.set(firstColumnValue, entry[1]);
-          console.log("added : ");
-          break;
-        }
-      }
-    }
-    if (searchflag === 0 && entryFound === false) {
-      let secondColumnSet = new Set<string>();
-      secondColumnSet.add(secondColumnValue);
-      this.userAccessMap.set(firstColumnValue, secondColumnSet);
-      console.log("added : ");
-    }
+    // let entryFound = false;
+    // let searchflag = 0;
+    // for (let entry of this.userAccessMap.entries()) {
+    //   if (entry[0].toString().trim() === firstColumnValue.toString().trim()) {
+    //     searchflag = 1;
+    //     if (entry[1].has(secondColumnValue.toString().trim())) {
+    //       entryFound = true;
+    //       searchflag = 2;
+    //       this.userAccessMap.delete(entry[0]);
+    //       console.log("deleted : ")
+    //       break;
+    //     }
+    //     if (searchflag === 1) {
+    //       entry[1].add(secondColumnValue);
+    //       this.userAccessMap.set(firstColumnValue, entry[1]);
+    //       console.log("added : ");
+    //       break;
+    //     }
+    //   }
+    // }
+    // if (searchflag === 0 && entryFound === false) {
+    //   let secondColumnSet = new Set<string>();
+    //   secondColumnSet.add(secondColumnValue);
+    //   this.userAccessMap.set(firstColumnValue, secondColumnSet);
+    //   console.log("added : ");
+    // }
 
-    //Iterate over map entries
-    for (let entry of this.userAccessMap.entries()) {
-      for (let key of entry[1].keys()) {
-        console.log('this is update map : ' + 'this is first index : ' + entry[0] + ' this is second index: ', key);
-      }
-    }
+    // //Iterate over map entries
+    // for (let entry of this.userAccessMap.entries()) {
+    //   for (let key of entry[1].keys()) {
+    //     console.log('this is update map : ' + 'this is first index : ' + entry[0] + ' this is second index: ', key);
+    //   }
+    // }
   }
 
   buildReactiveForm() {
