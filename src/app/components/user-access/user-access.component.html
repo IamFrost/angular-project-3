@@ -11,7 +11,7 @@
   <a href="#about">About</a>
 </div>
 
-<form [formGroup]="userAccessForm" (ngSubmit)="onSubmit()" style="margin-left: 12.5rem;">
+<form (ngSubmit)="onSubmit()" style="margin-left: 12.5rem;">
   <div class="card m-3">
     <h5 class="card-header" style="padding-top: 2rem; padding-bottom: 2rem;"></h5>
     <div class="card-body border-bottom">
@@ -19,17 +19,14 @@
         <div class="form-group">
           <label>Select User</label>
           <select [(ngModel)]="currentSelectedUser" [ngModelOptions]="{standalone: true}" class="form-control"
-            (change)="setOneUserAccess()"
-            [ngClass]="{ 'is-invalid': submitted && userAccessFormControl.userSelect.errors }">
+            (change)="setOneUserAccess()">
             <option value=""></option>
             <option *ngFor="let login of logins" [selected]="currentSelectedUser === login.username"
               value={{login.username}}>
               {{login.username}}
             </option>
           </select>
-          <!-- <div *ngIf="submitted && userAccessFormControl.userSelect.errors" class="invalid-feedback">
-                <div *ngIf="userAccessFormControl.userSelect.errors.required">User selection required</div>
-              </div> -->
+
         </div>
         <div class="form-group">
           <button class="btn btn-block" style="background-color: #d2e6dc;" disabled>Set User Permission</button>
@@ -49,9 +46,6 @@
                   class="form-check-input" value={{secondColumn}} (click)="updateUserAccess(firstColumn,secondColumn)">
                 <label for="checkbox_0" class="form-check-label">{{secondColumn}}</label>
 
-                <!-- <input name="checkbox{{i}}" id="checkbox{{i+'_'+j}}" type="checkbox" checked="checked"
-                        class="form-check-input" value={{secondColumn}}>
-                      <label for="checkbox_0" class="form-check-label">{{secondColumn}}</label> -->
 
               </ng-template>
 
@@ -60,10 +54,6 @@
                 <input name="checkbox{{i}}" id="checkbox{{i+'_'+j}}" type="checkbox" class="form-check-input"
                   value={{secondColumn}} (click)="updateUserAccess(firstColumn,secondColumn)">
                 <label for="checkbox_0" class="form-check-label">{{secondColumn}}</label>
-
-                <!-- <input name="checkbox{{i}}" id="checkbox{{i+'_'+j}}" type="checkbox" class="form-check-input"
-                        value={{secondColumn}}>
-                      <label for="checkbox_0" class="form-check-label">{{secondColumn}}</label> -->
 
               </ng-template>
 

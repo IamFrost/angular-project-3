@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, FormArray, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms'
 
 @Component({
   selector: 'app-test2',
@@ -8,21 +8,55 @@ import { FormGroup, FormBuilder, FormArray, FormControl } from '@angular/forms';
 })
 export class Test2Component implements OnInit {
 
-  name: string;
-  checkboxGroup: FormGroup;
 
-  constructor(_fb: FormBuilder) {
-    this.name = 'Angular2';
-    let checkboxArray = new FormArray([
-      new FormControl(true),
-      new FormControl(false),
-      new FormControl(true)]);
-    this.checkboxGroup = _fb.group({
-      myValues: checkboxArray
-    });
-    console.log(this.checkboxGroup);
+  reactiveForm: FormGroup;
+
+  buildReactiveForm() {
+    const reactiveForm = new FormGroup({
+      firstname: new FormControl('', [Validators.required]),
+      lastname: new FormControl(''),
+      email: new FormControl(''),
+      address: new FormGroup({
+        address: new FormControl(''),
+        city: new FormControl(''),
+        state: new FormControl(''),
+      })
+    })
+  }
+
+  setValue() {
+
+    this.reactiveForm.setValue({
+      firstname: "Sachin",
+      lastname: "Tendulakr",
+      email: "sachin@gmail.com",
+      address: {
+        address: "19-A, Perry Cross Road, Bandra (West)",
+        city: "Mumbai",
+        state: "Maharatsra",
+      }
+    })
+  }
+
+  setAddress() {
+    this.reactiveForm.get("address").setValue({
+      address: "19-A, Perry Cross Road, Bandra (West)",
+      city: "Mumbai",
+      state: "Maharatsra",
+    })
+  }
+
+  onSubmit() {
+    console.log(this.reactiveForm.value);
+  }
+
+  constructor() {
+
   }
   ngOnInit() {
 
   }
+
+
+
 }

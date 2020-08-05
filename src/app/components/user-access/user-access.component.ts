@@ -24,7 +24,7 @@ export class UserAccessComponent implements OnInit {
   userAccessMap = new Map<string, Set<string>>();
   trackMap = new Map<string, Set<string>>();
 
-  userAccessForm: FormGroup;
+
   submitted = false;
 
   constructor(private formBuilder: FormBuilder,
@@ -64,56 +64,54 @@ export class UserAccessComponent implements OnInit {
     //this.buildReactiveForm();
   }
 
-  // convenience getters for easy access to form fields
-  get userAccessFormControl() { return this.userAccessForm.controls; }
 
-  onUserSelectChange(e) {
+  // onUserSelectChange(e) {
 
-  }
+  // }
 
-  onCheckChange(event) {
-    const formArray: FormArray = this.userAccessForm.get('myMenu') as FormArray;
+  // onCheckChange(event) {
+  //   const formArray: FormArray = this.userAccessForm.get('myMenu') as FormArray;
 
-    /* Selected */
-    if(event.target.checked){
-      // Add a new control in the arrayForm
-      console.log(event.target.value);
-      formArray.push(new FormControl(event.target.value));
-    }
-    /* unselected */
-    else{
-      // find the unselected element
-      let i: number = 0;
+  //   /* Selected */
+  //   if(event.target.checked){
+  //     // Add a new control in the arrayForm
+  //     console.log(event.target.value);
+  //     formArray.push(new FormControl(event.target.value));
+  //   }
+  //   /* unselected */
+  //   else{
+  //     // find the unselected element
+  //     let i: number = 0;
 
-      formArray.controls.forEach((ctrl: FormControl) => {
-        if(ctrl.value == event.target.value) {
-          // Remove the unselected element from the arrayForm
-          formArray.removeAt(i);
-          return;
-        }
+  //     formArray.controls.forEach((ctrl: FormControl) => {
+  //       if(ctrl.value == event.target.value) {
+  //         // Remove the unselected element from the arrayForm
+  //         formArray.removeAt(i);
+  //         return;
+  //       }
 
-        i++;
-      });
-    }
-  }
+  //       i++;
+  //     });
+  //   }
+  // }
 
   onSubmit() {
-    this.submitted = true;
+    // this.submitted = true;
 
-    // stop here if form is invalid
-    if (this.userAccessForm.invalid) {
-      return;
-    }
+    // // stop here if form is invalid
+    // if (this.userAccessForm.invalid) {
+    //   return;
+    // }
 
-    // display form values on success
-    alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.userAccessForm.value, null, 4));
+    // // display form values on success
+    // alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.userAccessForm.value, null, 4));
   }
 
   buildReactiveForm() {
-    this.userAccessForm = this.formBuilder.group({
-      userSelect: [null, Validators.required],
-      myMenu: new FormArray([])
-    });
+    // this.userAccessForm = this.formBuilder.group({
+    //   userSelect: [null, Validators.required],
+    //   myMenu: new FormArray([])
+    // });
   }
 
   updateUserAccess(firstColumnValue: string, secondColumnValue: string) {
