@@ -12,7 +12,7 @@ import { Test3Component } from './components/test3/test3.component';
 const routes: Routes = [
   {
     path:'',
-    redirectTo: 'useraccess',
+    redirectTo: 'test2',
     pathMatch: 'full'
   },
   {

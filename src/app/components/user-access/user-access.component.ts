@@ -61,7 +61,7 @@ export class UserAccessComponent implements OnInit {
     this.setAllLogin();
     this.getMenu();
     this.getFirstColumn();
-    this.buildReactiveForm();
+    //this.buildReactiveForm();
   }
 
   // convenience getters for easy access to form fields
@@ -69,6 +69,32 @@ export class UserAccessComponent implements OnInit {
 
   onUserSelectChange(e) {
 
+  }
+
+  onCheckChange(event) {
+    const formArray: FormArray = this.userAccessForm.get('myMenu') as FormArray;
+
+    /* Selected */
+    if(event.target.checked){
+      // Add a new control in the arrayForm
+      console.log(event.target.value);
+      formArray.push(new FormControl(event.target.value));
+    }
+    /* unselected */
+    else{
+      // find the unselected element
+      let i: number = 0;
+
+      formArray.controls.forEach((ctrl: FormControl) => {
+        if(ctrl.value == event.target.value) {
+          // Remove the unselected element from the arrayForm
+          formArray.removeAt(i);
+          return;
+        }
+
+        i++;
+      });
+    }
   }
 
   onSubmit() {
@@ -83,7 +109,17 @@ export class UserAccessComponent implements OnInit {
     alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.userAccessForm.value, null, 4));
   }
 
+  buildReactiveForm() {
+    this.userAccessForm = this.formBuilder.group({
+      userSelect: [null, Validators.required],
+      myMenu: new FormArray([])
+    });
+  }
+
   updateUserAccess(firstColumnValue: string, secondColumnValue: string) {
+    // if(!this.userAccessMap.has(firstColumnValue)){
+    //   this.userAccessMap.set(firstColumnValue, new Set<string>(secondColumnValue));
+    // }
     // console.log("this is user: " + this.currentSelectedUser + " this is firstColumnValue : " + firstColumnValue + " this is secondColumnValue: " + secondColumnValue);
 
     // let entryFound = false;
@@ -119,12 +155,6 @@ export class UserAccessComponent implements OnInit {
     //     console.log('this is update map : ' + 'this is first index : ' + entry[0] + ' this is second index: ', key);
     //   }
     // }
-  }
-
-  buildReactiveForm() {
-    this.userAccessForm = this.formBuilder.group({
-      userSelect: [null, Validators.required]
-    });
   }
 
   addInMap(key: string, value: string) {
@@ -208,16 +238,18 @@ export class UserAccessComponent implements OnInit {
 
   setOneUserAccess() {
     this.userAccessMap.clear();
-    this.userAccessOneService.getOneUserAccess(this.getCurrentSelectedUser()).subscribe(data => {
-      //console.log('one', data);
-      if (data) {
-        this.usersec = data;
-        this.setCurrentSelectedUserAccess();
-      }
-      else {
-        this.usersec = null;
-      }
-    })
+    if (this.getCurrentSelectedUser()) {
+      this.userAccessOneService.getOneUserAccess(this.getCurrentSelectedUser()).subscribe(data => {
+        //console.log('one', data);
+        if (data) {
+          this.usersec = data;
+          this.setCurrentSelectedUserAccess();
+        }
+        else {
+          this.usersec = null;
+        }
+      })
+    }
   }
 
   getCurrentSelectedUser(): string {

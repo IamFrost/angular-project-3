@@ -1,0 +1,10 @@
+<div>
+  <h2>Hello {{name}}</h2>
+  <form [formGroup]="checkboxGroup">
+    <input *ngFor="let control of checkboxGroup.controls['myValues'].value"
+    type="checkbox" id="checkbox-1" value="value-1"
+      [formControl]="control" />
+
+  </form>
+  <div>{{checkboxGroup.controls['myValues'].value}}</div>
+</div>
