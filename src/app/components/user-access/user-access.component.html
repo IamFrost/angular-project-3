@@ -42,18 +42,34 @@
 
               <ng-template #thenBlock>
 
-                <input name="checkbox{{i}}" id="checkbox{{i+'_'+j}}" type="checkbox" checked="checked"
-                  class="form-check-input" value={{secondColumn}} (click)="updateUserAccess(firstColumn,secondColumn)">
-                <label for="checkbox_0" class="form-check-label">{{secondColumn}}</label>
+                <input
+                  name="checkbox{{i}}"
+                  id="checkbox{{i+'_'+j}}"
+                  type="checkbox"
+                  checked="checked"
+                  class="form-check-input"
+                  value={{secondColumn}}
+                  (click)="updateUserAccess(firstColumn,secondColumn)">
 
+                <label for="checkbox{{i+'_'+j}}" class="form-check-label">
+                  {{secondColumn}}
+                </label>
 
               </ng-template>
 
               <ng-template #elseBlock>
 
-                <input name="checkbox{{i}}" id="checkbox{{i+'_'+j}}" type="checkbox" class="form-check-input"
-                  value={{secondColumn}} (click)="updateUserAccess(firstColumn,secondColumn)">
-                <label for="checkbox_0" class="form-check-label">{{secondColumn}}</label>
+                <input
+                  name="checkbox{{i}}"
+                  id="checkbox{{i+'_'+j}}"
+                  type="checkbox"
+                  class="form-check-input"
+                  value={{secondColumn}}
+                  (click)="updateUserAccess(firstColumn,secondColumn)">
+
+                <label for="checkbox{{i+'_'+j}}" class="form-check-label">
+                  {{secondColumn}}
+                </label>
 
               </ng-template>
 

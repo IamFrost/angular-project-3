@@ -1,39 +1,19 @@
-<form [formGroup]="reactiveForm" (ngSubmit)="onSubmit()" novalidate>
+<h3>{{title}}</h3>
 
-  <p>
-    <label for="firstname">First Name </label>
-    <input type="text" id="firstname" name="firstname" formControlName="firstname">
-  </p>
+<div style="float: left; width:50%;">
 
-  <p>
-    <label for="lastname">Last Name </label>
-    <input type="text" id="lastname" name="lastname" formControlName="lastname">
-  </p>
-
-  <p>
-    <label for="email">Email </label>
-    <input type="text" id="email" name="email" formControlName="email">
-  </p>
-
-  <div formGroupName="address">
+  <form [formGroup]="reactiveForm" novalidate>
 
     <p>
-      <label for="address">Address</label>
-      <input type="text" class="form-control" name="address" formControlName="address">
+      <input type="checkbox" id="firstname1" name="firstname1" formControlName="firstname">
+      <label for="firstname1">First Name </label>
     </p>
 
-    <p>
-      <label for="city">City</label>
-      <input type="text" class="form-control" name="city" formControlName="city">
-    </p>
+    
 
-    <p>
-      <label for="state">State</label>
-      <input type="text" class="form-control" name="state" formControlName="state">
-    </p>
+    <button type="submit" (click)="uncheckAll()">Uncheck All</button>
+    <button type="button" (click)="getAllValues()">Get All Values</button>
 
-  </div>
+  </form>
 
-  <button>Submit</button>
-
-</form>
+</div>
