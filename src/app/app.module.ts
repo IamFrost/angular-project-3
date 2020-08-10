@@ -14,6 +14,7 @@ import { Menu1Component } from '../app/components/menu1/menu1.component';
 import { UserAccessComponent } from '../app/components/user-access/user-access.component';
 import { Test2Component } from './components/test2/test2.component';
 import { Test3Component } from './components/test3/test3.component';
+import { Test1Component } from './components/test1/test1.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { Test3Component } from './components/test3/test3.component';
     Menu1Component,
     UserAccessComponent,
     Test2Component,
-    Test3Component
+    Test3Component,
+    Test1Component
   ],
   imports: [
     BrowserModule,

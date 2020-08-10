@@ -6,12 +6,19 @@ import { UserAccessOneService } from "../../services/user-access-one/user-access
 import { LoginService } from 'src/app/services/login/login.service';
 
 @Component({
-  selector: 'app-user-access',
-  templateUrl: './user-access.component.html',
-  styleUrls: ['./user-access.component.css']
+  selector: 'app-test1',
+  templateUrl: './test1.component.html',
+  styleUrls: ['./test1.component.css']
 })
-export class UserAccessComponent implements OnInit {
+export class Test1Component implements OnInit {
+  form: FormGroup;
+  websiteList: any = [
+    { id: 1, name: 'ItSolutionStuff.com' },
+    { id: 2, name: 'HDTuto.com' },
+    { id: 3, name: 'NiceSnippets.com' }
+  ];
 
+  accessForm: FormGroup;
   currentSelectedUser: string = null;
 
   logins: LoginsModel[] = null;
@@ -24,12 +31,19 @@ export class UserAccessComponent implements OnInit {
   userAccessMap = new Map<string, Set<string>>();
   trackMap = new Map<string, Set<string>>();
 
-
   submitted = false;
+
+  accessUpdateArray: string[][] = [];
+
 
   constructor(private formBuilder: FormBuilder,
     private userAccessOneService: UserAccessOneService,
     private loginService: LoginService) {
+
+    this.form = this.formBuilder.group({
+      website: this.formBuilder.array([], [Validators.required])
+    });
+
     let map = new Map<string, string[]>();
     map.set('ADMIN', ['Create User', 'User Access']);
     map.set('ACCOUNTS', ['Accounting Head Entry', 'Buyer Ledger',
@@ -55,64 +69,63 @@ export class UserAccessComponent implements OnInit {
     else {
       this.menuMap = null;
     }
-  }
 
-  ngOnInit() {
+    this.accessForm = this.formBuilder.group({
+      access: this.formBuilder.array([], [Validators.required])
+    });
+
+    for(let firstColumn of this.menuMapFirstColumn){
+      for(let secondColumn of this.getSecondColumn(firstColumn)){
+        this.accessForm.addControl(
+          "checkbox" + firstColumn + "_" + secondColumn,
+          new FormControl(false)
+        );
+      }
+    };
+
+  }
+  ngOnInit(): void {
     this.setAllLogin();
     this.getMenu();
     this.getFirstColumn();
-    //this.buildReactiveForm();
+  }
+
+  onCheckboxChange(e) {
+    const website: FormArray = this.form.get('website') as FormArray;
+    if (e.target.checked) {
+      website.push(new FormControl(e.target.value));
+    } else {
+      const index = website.controls.findIndex(x => x.value === e.target.value);
+      website.removeAt(index);
+    }
+  }
+
+  submit() {
+    console.log(this.form.value);
   }
 
 
-  // onUserSelectChange(e) {
 
-  // }
+  onAccessCheckboxChange(e, firstColumnValue: string) {
+    const access: FormArray = this.accessForm.get('access') as FormArray;
 
-  // onCheckChange(event) {
-  //   const formArray: FormArray = this.userAccessForm.get('myMenu') as FormArray;
-
-  //   /* Selected */
-  //   if(event.target.checked){
-  //     // Add a new control in the arrayForm
-  //     console.log(event.target.value);
-  //     formArray.push(new FormControl(event.target.value));
-  //   }
-  //   /* unselected */
-  //   else{
-  //     // find the unselected element
-  //     let i: number = 0;
-
-  //     formArray.controls.forEach((ctrl: FormControl) => {
-  //       if(ctrl.value == event.target.value) {
-  //         // Remove the unselected element from the arrayForm
-  //         formArray.removeAt(i);
-  //         return;
-  //       }
-
-  //       i++;
-  //     });
-  //   }
-  // }
-
-  onSubmit() {
-    // this.submitted = true;
-
-    // // stop here if form is invalid
-    // if (this.userAccessForm.invalid) {
-    //   return;
+    // for (const iterator of access[0]) {
+    //   console.log('this is form array: '+iterator);
+    //   console.log('');
     // }
-
-    // // display form values on success
-    // alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.userAccessForm.value, null, 4));
+    if (e.target.checked) {
+      access[firstColumnValue].push(new FormControl(e.target.value));
+    } else {
+      const index = access.controls.findIndex(x => x.value === e.target.value);
+      access[firstColumnValue].removeAt(index);
+    }
   }
 
-  buildReactiveForm() {
-    // this.userAccessForm = this.formBuilder.group({
-    //   userSelect: [null, Validators.required],
-    //   myMenu: new FormArray([])
-    // });
+  submitAccess() {
+    console.log(this.accessForm.value);
   }
+
+
 
   updateUserAccess(firstColumnValue: string, secondColumnValue: string) {
     // if(!this.userAccessMap.has(firstColumnValue)){
@@ -120,56 +133,39 @@ export class UserAccessComponent implements OnInit {
     // }
     // console.log("this is user: " + this.currentSelectedUser + " this is firstColumnValue : " + firstColumnValue + " this is secondColumnValue: " + secondColumnValue);
 
-    let entryFound = false;
-    let searchflag = 0;
-    for (let entry of this.userAccessMap.entries()) {
-      if (entry[0].toString().trim() === firstColumnValue.toString().trim()) {
-        searchflag = 1;
-        if (entry[1].has(secondColumnValue.toString().trim())) {
-          if (entry[1].size === 1) {
-            entryFound = true;
-            searchflag = 2;
-            this.userAccessMap.delete(entry[0]);
-            console.log("deleted : ")
-            break;
-          }
-          else {
-            entryFound = true;
-            searchflag = 3;
-            let menuNameSet = new Set<string>();
-            menuNameSet = entry[1];
-            menuNameSet.delete(firstColumnValue);
-            this.userAccessMap.set(firstColumnValue, menuNameSet);
-            console.log("deleted : ")
-            break;
-          }
-          // entryFound = true;
-          // searchflag = 2;
-          // this.userAccessMap.delete(entry[0]);
-          // console.log("deleted : ")
-          // break;
-        }
-        if (searchflag === 1) {
-          entry[1].add(secondColumnValue);
-          this.userAccessMap.set(firstColumnValue, entry[1]);
-          console.log("added : ");
-          break;
-        }
-      }
-    }
-    if (searchflag === 0 && entryFound === false) {
-      let secondColumnSet = new Set<string>();
-      secondColumnSet.add(secondColumnValue);
-      this.userAccessMap.set(firstColumnValue, secondColumnSet);
-      console.log("added : ");
-    }
+    // let entryFound = false;
+    // let searchflag = 0;
+    // for (let entry of this.userAccessMap.entries()) {
+    //   if (entry[0].toString().trim() === firstColumnValue.toString().trim()) {
+    //     searchflag = 1;
+    //     if (entry[1].has(secondColumnValue.toString().trim())) {
+    //       entryFound = true;
+    //       searchflag = 2;
+    //       this.userAccessMap.delete(entry[0]);
+    //       console.log("deleted : ")
+    //       break;
+    //     }
+    //     if (searchflag === 1) {
+    //       entry[1].add(secondColumnValue);
+    //       this.userAccessMap.set(firstColumnValue, entry[1]);
+    //       console.log("added : ");
+    //       break;
+    //     }
+    //   }
+    // }
+    // if (searchflag === 0 && entryFound === false) {
+    //   let secondColumnSet = new Set<string>();
+    //   secondColumnSet.add(secondColumnValue);
+    //   this.userAccessMap.set(firstColumnValue, secondColumnSet);
+    //   console.log("added : ");
+    // }
 
-    //Iterate over map entries
-    for (let entry of this.userAccessMap.entries()) {
-      for (let key of entry[1].keys()) {
-        console.log('this is update map : ' + 'this is first index : ' + entry[0] + ' this is second index: ', key);
-      }
-    }
+    // //Iterate over map entries
+    // for (let entry of this.userAccessMap.entries()) {
+    //   for (let key of entry[1].keys()) {
+    //     console.log('this is update map : ' + 'this is first index : ' + entry[0] + ' this is second index: ', key);
+    //   }
+    // }
   }
 
   addInMap(key: string, value: string) {
@@ -177,16 +173,21 @@ export class UserAccessComponent implements OnInit {
       let menuNameSet = new Set<string>();
       menuNameSet.add(value);
       this.userAccessMap.set(key, menuNameSet);
+      this.accessUpdateArray[key] = [value];
     }
     else {
       for (let row of this.userAccessMap) {
         if (row[0].toString().trim() === key.toString().trim()) {
           let menuNameSet = new Set<string>();
+          let menuNameArray: string[] = [];
           for (let entry of row[1]) {
             menuNameSet.add(entry);
+            menuNameArray.push(entry)
           }
           menuNameSet.add(value);
+          menuNameArray.push(value);
           this.userAccessMap.set(key, menuNameSet);
+          this.accessUpdateArray[key] = [menuNameArray];
           break;
         }
       }
@@ -252,7 +253,11 @@ export class UserAccessComponent implements OnInit {
   }
 
   setOneUserAccess() {
+
     this.userAccessMap.clear();
+
+    this.accessUpdateArray = [];
+
     if (this.getCurrentSelectedUser()) {
       this.userAccessOneService.getOneUserAccess(this.getCurrentSelectedUser()).subscribe(data => {
         //console.log('one', data);
@@ -335,4 +340,7 @@ export class UserAccessComponent implements OnInit {
     })
   }
 
+  print() {
+    console.log(this.accessUpdateArray);
+  }
 }

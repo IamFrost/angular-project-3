@@ -7,12 +7,13 @@ import { Menu1Component } from '../app/components/menu1/menu1.component';
 import { UserAccessComponent } from '../app/components/user-access/user-access.component';
 import { Test2Component } from './components/test2/test2.component';
 import { Test3Component } from './components/test3/test3.component';
+import { Test1Component } from './components/test1/test1.component';
 
 
 const routes: Routes = [
   {
     path:'',
-    redirectTo: 'test2',
+    redirectTo: 'test1',
     pathMatch: 'full'
   },
   {
@@ -26,6 +27,10 @@ const routes: Routes = [
   {
     path:'selectbranchfyear',
     component: SelectBranchFyearComponent
+  },
+  {
+    path:'test1',
+    component: Test1Component
   },
   {
     path:'test2',

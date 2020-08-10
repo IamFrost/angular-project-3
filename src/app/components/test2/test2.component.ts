@@ -21,7 +21,7 @@ export class Test2Component implements OnInit {
 
   reactiveForm: FormGroup;
 
-  accessCheckboxFGN: FormGroupName;
+  accessCheckbox: FormGroupName;
 
   constructor(private fb: FormBuilder) {
 
@@ -29,7 +29,7 @@ export class Test2Component implements OnInit {
       firstname: new FormControl(false)
     });
 
-    
+
 
   }
 
