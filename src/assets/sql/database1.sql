@@ -2,7 +2,7 @@ DROP SEQUENCE IF EXISTS schema1.accessid_seq CASCADE;
 DROP SEQUENCE IF EXISTS schema1.submenuid_seq CASCADE;
 DROP SEQUENCE IF EXISTS schema1.menuid_seq CASCADE;
 DROP SEQUENCE IF EXISTS schema1.accessid_seq CASCADE;
-DROP SEQUENCE IF EXISTS schema1.purchase_id_seq CASCADE;
+DROP SEQUENCE IF EXISTS schema1.purchaseid_seq CASCADE;
 DROP SEQUENCE IF EXISTS schema1.privilegeid_seq CASCADE;
 DROP SEQUENCE IF EXISTS schema1.userid_seq CASCADE;
 
