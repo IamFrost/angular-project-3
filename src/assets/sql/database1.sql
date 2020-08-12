@@ -34,10 +34,10 @@ CREATE TABLE schema1.access_menu1
      menuname VARCHAR(255)
   );
 
-CREATE SEQUENCE schema1.purchase_id_seq;
+CREATE SEQUENCE schema1.purchaseid_seq;
 CREATE TABLE schema1.purchase
   (
-     purchase_id   INT NOT NULL DEFAULT NEXTVAL('schema1.purchase_id_seq'),
+     purchaseid   INT NOT NULL DEFAULT NEXTVAL('schema1.purchaseid_seq'),
      item_name     VARCHAR(255),
      item_quantity FLOAT,
      item_rate     FLOAT,
@@ -427,7 +427,7 @@ VALUES     (5,
             'RECEIVED GOODS');
 
 INSERT INTO schema1.purchase
-            (purchase_id,
+            (purchaseid,
              item_name,
              item_quantity,
              item_rate,
@@ -441,7 +441,7 @@ VALUES     (1,
             1000);
 
 INSERT INTO schema1.purchase
-            (purchase_id,
+            (purchaseid,
              item_name,
              item_quantity,
              item_rate,
@@ -455,7 +455,7 @@ VALUES     (2,
             1001);
 
 INSERT INTO schema1.purchase
-            (purchase_id,
+            (purchaseid,
              item_name,
              item_quantity,
              item_rate,
