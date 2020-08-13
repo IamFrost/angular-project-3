@@ -1,10 +1,17 @@
 DROP SEQUENCE IF EXISTS accessid_seq CASCADE;
 DROP SEQUENCE IF EXISTS submenuid_seq CASCADE;
 DROP SEQUENCE IF EXISTS menuid_seq CASCADE;
-DROP SEQUENCE IF EXISTS accessid_seq CASCADE;
 DROP SEQUENCE IF EXISTS purchaseid_seq CASCADE;
 DROP SEQUENCE IF EXISTS privilegeid_seq CASCADE;
-DROP SEQUENCE IF EXISTS userid_seq CASCADE;
+DROP SEQUENCE IF EXISTS loginid_seq CASCADE;
+
+DROP TABLE IF EXISTS access1;
+DROP TABLE IF EXISTS access_submenu1;
+DROP TABLE IF EXISTS access_menu1;
+DROP TABLE IF EXISTS purchase;
+DROP TABLE IF EXISTS privilege;
+DROP TABLE IF EXISTS login1;
+
 
 CREATE SEQUENCE accessid_seq;
 CREATE TABLE access1
@@ -49,10 +56,10 @@ CREATE TABLE privilege
      username       VARCHAR(255)
   );
 
-CREATE SEQUENCE userid_seq;
+CREATE SEQUENCE loginid_seq;
 CREATE TABLE login1
   (
-     userid     INT NOT NULL DEFAULT NEXTVAL('userid_seq'),
+     loginid     INT NOT NULL DEFAULT NEXTVAL('loginid_seq'),
      username   VARCHAR(255),
      email      VARCHAR(255),
      password_1 VARCHAR(255)
@@ -473,7 +480,7 @@ VALUES     (1,
             'a');
 
 INSERT INTO login1
-            (userid,
+            (loginid,
              username,
              email,
              password_1)
@@ -483,7 +490,7 @@ VALUES     (1,
             'a');
 
 INSERT INTO login1
-            (userid,
+            (loginid,
              username,
              email,
              password_1)
@@ -493,7 +500,7 @@ VALUES     (2,
             'a');
 
 INSERT INTO login1
-            (userid,
+            (loginid,
              username,
              email,
              password_1)
@@ -503,7 +510,7 @@ VALUES     (3,
             'a');
 
 INSERT INTO login1
-            (userid,
+            (loginid,
              username,
              email,
              password_1)
