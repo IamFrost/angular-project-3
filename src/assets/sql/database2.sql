@@ -6,8 +6,6 @@ DROP SEQUENCE IF EXISTS purchaseid_seq CASCADE;
 DROP SEQUENCE IF EXISTS privilegeid_seq CASCADE;
 DROP SEQUENCE IF EXISTS userid_seq CASCADE;
 
-DROP SCHEMA IF EXISTS schema1 CASCADE;
-
 CREATE SEQUENCE accessid_seq;
 CREATE TABLE access1
   (
@@ -52,7 +50,7 @@ CREATE TABLE privilege
   );
 
 CREATE SEQUENCE userid_seq;
-CREATE TABLE login_1
+CREATE TABLE login1
   (
      userid     INT NOT NULL DEFAULT NEXTVAL('userid_seq'),
      username   VARCHAR(255),
@@ -474,7 +472,7 @@ VALUES     (1,
             'admin',
             'a');
 
-INSERT INTO login_1
+INSERT INTO login1
             (userid,
              username,
              email,
@@ -484,7 +482,7 @@ VALUES     (1,
             'a@a.a',
             'a');
 
-INSERT INTO login_1
+INSERT INTO login1
             (userid,
              username,
              email,
@@ -494,7 +492,7 @@ VALUES     (2,
             'rony@mycompany.com',
             'a');
 
-INSERT INTO login_1
+INSERT INTO login1
             (userid,
              username,
              email,
@@ -504,7 +502,7 @@ VALUES     (3,
             'alex@thatcompany.com',
             'a');
 
-INSERT INTO login_1
+INSERT INTO login1
             (userid,
              username,
              email,
