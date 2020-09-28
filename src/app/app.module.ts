@@ -15,6 +15,7 @@ import { UserAccessComponent } from '../app/components/user-access/user-access.c
 import { Test2Component } from './components/test2/test2.component';
 import { Test3Component } from './components/test3/test3.component';
 import { Test1Component } from './components/test1/test1.component';
+import { Test4Component } from './components/test4/test4.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { Test1Component } from './components/test1/test1.component';
     UserAccessComponent,
     Test2Component,
     Test3Component,
-    Test1Component
+    Test1Component,
+    Test4Component
   ],
   imports: [
     BrowserModule,

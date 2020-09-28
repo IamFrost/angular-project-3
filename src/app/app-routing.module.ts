@@ -8,44 +8,49 @@ import { UserAccessComponent } from '../app/components/user-access/user-access.c
 import { Test2Component } from './components/test2/test2.component';
 import { Test3Component } from './components/test3/test3.component';
 import { Test1Component } from './components/test1/test1.component';
+import { Test4Component } from './components/test4/test4.component';
 
 
 const routes: Routes = [
   {
-    path:'',
+    path: '',
     redirectTo: 'selectbranchfyear',
     pathMatch: 'full'
   },
   {
-    path:'login',
+    path: 'login',
     component: LoginComponent
   },
   {
-    path:'signup',
+    path: 'signup',
     component: SignupComponent
   },
   {
-    path:'selectbranchfyear',
+    path: 'selectbranchfyear',
     component: SelectBranchFyearComponent
   },
   {
-    path:'test1',
+    path: 't1',
     component: Test1Component
   },
   {
-    path:'test2',
+    path: 't2',
     component: Test2Component
   },
   {
-    path:'test3',
+    path: 't3',
     component: Test3Component
   },
   {
-    path:'menu1',
+    path: 't4',
+    component: Test4Component
+  },
+  {
+    path: 'menu1',
     component: Menu1Component
   },
   {
-    path:'useraccess',
+    path: 'useraccess',
     component: UserAccessComponent
   }
 ];
