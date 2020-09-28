@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, Validators, FormControl } from '@angular/forms';
-import { UsersecModel } from '../../models/usersec/usersec-model';
-import { LoginsModel } from '../../models/logins/logins-model';
-import { UserAccessOneService } from "../../services/user-access-one/user-access-one.service";
-import { LoginService } from 'src/app/services/login/login.service';
+import { UsersecModel } from '../../../models/test/usersec/usersec-model';
+import { LoginsModel } from '../../../models/test/logins/logins-model';
+import { UserAccessOneService } from "../../../services/test/user-access-one/user-access-one.service";
+import { LoginService } from '../../../services/test/login/login.service';
 
 @Component({
   selector: 'app-user-access',

@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { LoginComponent } from '../app/components/login/login.component';
-import { SignupComponent } from '../app/components/signup/signup.component';
-import { SelectBranchFyearComponent } from '../app/components/select-branch-fyear/select-branch-fyear.component';
-import { Menu1Component } from '../app/components/menu1/menu1.component';
-import { UserAccessComponent } from '../app/components/user-access/user-access.component';
-import { Test2Component } from './components/test2/test2.component';
-import { Test3Component } from './components/test3/test3.component';
-import { Test1Component } from './components/test1/test1.component';
-import { Test4Component } from './components/test4/test4.component';
+import { LoginComponent } from '../app/components/test/login/login.component';
+import { SignupComponent } from '../app/components/test/signup/signup.component';
+import { SelectBranchFyearComponent } from '../app/components/test/select-branch-fyear/select-branch-fyear.component';
+import { Menu1Component } from '../app/components/test/menu1/menu1.component';
+import { UserAccessComponent } from '../app/components/test/user-access/user-access.component';
+import { Test2Component } from './components/test/test2/test2.component';
+import { Test3Component } from './components/test/test3/test3.component';
+import { Test1Component } from './components/test/test1/test1.component';
+import { Test4Component } from './components/test/test4/test4.component';
 
 
 const routes: Routes = [

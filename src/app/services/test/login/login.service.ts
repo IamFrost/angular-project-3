@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { LoginsModel } from 'src/app/models/logins/logins-model';
+import { LoginsModel } from '../../../models/test/logins/logins-model';
 
 const headerOption = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })

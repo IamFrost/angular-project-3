@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { UsersecModel } from '../../models/usersec/usersec-model';
+import { UsersecModel } from '../../../models/test/usersec/usersec-model';
 import {HttpClient, HttpHeaders } from '@angular/common/http'
 
 const headerOption = {
