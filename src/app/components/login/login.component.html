@@ -1,1 +1,84 @@
-<p>login works!</p>
+<div class="outer" style="display: table; position: absolute; top: 0; left: 0; height: 100%; width: 100%;">
+  <div class="middle" style="display: table-cell; vertical-align: middle;">
+    <div class="container align-self-center col-6" style="background-color: #f0f0f0;">
+      <h5>Add Category Entry</h5>
+
+      <div class="row">
+        <div class="col">
+          <div class="card">
+            <div class="card-header bg-primary" style="color: white">Head Entry</div>
+            <div class="card-body">
+              <form>
+                <div class="form-group row">
+                  <label for="code" class="col-3 col-form-label">Code:</label>
+                  <div class="col-9">
+                    <div class="input-group" style="width: 50%;">
+                      <input id="code" name="code" placeholder="Enter Category Code"
+                        type="number" class="form-control" required="required" disabled>
+                      <div class="input-group-append">
+                        <div class="input-group-text">
+                          <i class="fa fa-hashtag"></i>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="description" class="col-3 col-form-label">Description:</label>
+                  <div class="col-9">
+                    <div class="input-group">
+                      <input id="description" name="description"
+                        placeholder="Enter Category Description" type="text" class="form-control" required="required">
+                      <div class="input-group-append">
+                        <div class="input-group-text">
+                          <i class="fa fa-list-ul"></i>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="rate" class="col-3 col-form-label">Rate:</label>
+                  <div class="col-9">
+                    <div class="input-group" style="width: 50%;">
+                      <input id="rate" name="rate" placeholder="Enter Rate" type="number"
+                        class="form-control">
+                      <div class="input-group-append">
+                        <div class="input-group-text">
+                          <i class="fa fa-money"></i>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="offset-3 col-9">
+                    <div class="row justify-content-between" style="margin: 0%; padding: 0%;">
+                      <div class="col-auto" style="margin: 0%; padding: 0%;">
+                        <button name="button" type="button" class="btn btn-primary"
+                          >Submit</button>
+                      </div>
+                      <div class="col-auto" style="margin: 0%; padding: 0%;">
+                        <button name="button" type="button" class="btn btn-success"
+                          >Update</button>
+                      </div>
+                      <div class="col-auto" style="margin: 0%; padding: 0%;">
+                        <button name="button" type="button"
+                          class="btn btn-warning">Reset</button>
+                      </div>
+                      <div class="col-auto" style="margin: 0%; padding: 0%;">
+                        <button name="button" type="button" class="btn btn-danger"
+                          >Delete</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="card-footer"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
