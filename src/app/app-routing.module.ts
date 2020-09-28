@@ -13,7 +13,7 @@ import { Test1Component } from './components/test1/test1.component';
 const routes: Routes = [
   {
     path:'',
-    redirectTo: 'test1',
+    redirectTo: 'selectbranchfyear',
     pathMatch: 'full'
   },
   {
