@@ -14,7 +14,7 @@ import { Test4Component } from './components/test4/test4.component';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'selectbranchfyear',
+    redirectTo: 'login',
     pathMatch: 'full'
   },
   {
